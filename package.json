@@ -27,6 +27,7 @@
     "@babel/core": "^7.9.0",
     "@react-navigation/native": "^5.9.4",
     "expo-app-loading": "^1.0.3",
+    "expo-font": "^9.1.0",
     "react-redux": "^7.2.4"
   },
   "private": true

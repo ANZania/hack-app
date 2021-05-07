@@ -3,15 +3,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AppLoading from "expo-app-loading";
 import { StartScreen } from './src/screens/StartScreen'
+import {bootstrap} from "./src/bootstrap";
 
 export default function App() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(true)
+
+  const loadFonts = async () => {
+    await bootstrap()
+    setIsLoaded(false)
+  }
 
   if (isLoaded) {
     return (
         <AppLoading
-            onFinish={() => setIsLoaded(true)}
-            onError={err => console.log(err)}
+          startAsync={loadFonts}
+          onFinish={() => setIsLoaded(true)}
+          onError={err => console.log(err)}
         />
     )
   }
