@@ -1,5 +1,6 @@
 import React from 'react'
-import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native'
+import {View, StyleSheet, Image, Text} from 'react-native'
+import {AppButton} from "../ui/AppButton";
 
 export const StartScreen = ({navigation}) => {
     return (
@@ -17,11 +18,7 @@ export const StartScreen = ({navigation}) => {
             <Text style={styles.description}>
               Наш сервис позволяет получить комментарии специалиста о состоянии ваших
             </Text>
-            <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper}>
-              <View style={styles.buttonStart}>
-                <Text style={styles.buttonText}>Начать</Text>
-              </View>
-            </TouchableOpacity>
+            <AppButton text='Начать' />
           </View>
         </View>
     )
@@ -79,26 +76,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Italic-Regular',
     color: '#888891',
     paddingBottom: "12%"
-  },
-  buttonWrapper: {
-    flexDirection: "column",
-    width: "100%",
-    height: 72
-  },
-  buttonStart: {
-    borderRadius: 16,
-    height: 72,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: '#1177FF'
-  },
-  buttonText: {
-    fontFamily: 'Italic-Bold',
-    color: "#fff",
-    fontWeight: "500",
-    fontSize: 24,
-    lineHeight: 28,
   }
 })
