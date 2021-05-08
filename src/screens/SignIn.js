@@ -10,16 +10,15 @@ export const SignIn = ({navigation}) => {
             <View style={styles.logoWrap}>
                 <Logo/>
             </View>
-            <SignInForm/>
+            <SignInForm navigation={navigation}/>
         </View>
     )
-
 };
 
 const styles = StyleSheet.create({
     mainWrap: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f5f5f5',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',

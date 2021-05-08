@@ -1,33 +1,45 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import {View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {AppButton} from "../ui/AppButton";
 
 
-export const SignInForm = () => {
+export const SignInForm = ({navigation}) => {
     const [login, onChangeLogin] = React.useState(null);
     const [password, onChangePassword] = React.useState(null);
 
     return(
         <View style={styles.mainWrap}>
             <View style={styles.loginWrap}>
-                <Text style={styles.heading}>
-                    Вход
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeLogin}
-                    placeholder={'Логин/номер телефона'}
-                    value={login}
-                />
+                <View>
+                    <Text style={styles.heading}>
+                        Вход
+                    </Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={onChangeLogin}
+                        placeholder={'Логин/номер телефона'}
+                        value={login}
+                    />
 
-                <TextInput
-                    secureTextEntry={true}
-                    style={styles.input}
-                    onChangeText={onChangePassword}
-                    placeholder={'Пароль'}
-                    value={password}
-                />
-                <AppButton/>
+                    <TextInput
+                        secureTextEntry={true}
+                        style={styles.input}
+                        onChangeText={onChangePassword}
+                        placeholder={'Пароль'}
+                        value={password}
+                    />
+                </View>
+                <View style={styles.buttonWrap}>
+                    <AppButton text={'Войти'} onPress={() => navigation.navigate('LotList')}/>
+                    <Text style={styles.registerText}>
+                        Нет аккаунта?
+                    </Text>
+                    <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.goBack()}>
+                        <Text style={styles.registerLink}>
+                            Зарегистрироваться
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>)
 }
@@ -48,8 +60,18 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
         paddingHorizontal: '10%',
-        backgroundColor: '#f7f7f7',
-        paddingTop: '5%'
+        backgroundColor: '#fff',
+        paddingTop: '5%',
+        justifyContent: 'flex-start',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 5.25,
+        elevation: 13,
     },
     heading: {
         fontFamily: 'Inter-Medium',
@@ -62,4 +84,20 @@ const styles = StyleSheet.create({
         borderBottomColor: '#000',
         marginVertical: '3%',
     },
+    buttonWrap: {
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        paddingTop: '25%',
+        alignItems: 'center'
+    },
+    registerText: {
+        fontFamily: 'Inter-Regular',
+        paddingTop: '5%',
+        paddingBottom: '1.5%'
+    },
+    registerLink: {
+        fontFamily: 'Inter-Medium',
+        fontSize: 16,
+        color: '#1177FF'
+    }
 })

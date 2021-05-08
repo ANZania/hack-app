@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight
   },
   heading: {
-    fontFamily: "Italic-ExtraBold",
+    fontFamily: "Inter-ExtraBold",
     color: "#000000",
     fontSize: 35,
     paddingHorizontal: 20,
     marginBottom: 39
   },
   subTitle: {
-    fontFamily: "Italic-Medium",
+    fontFamily: "Inter-Medium",
     color: "#000000",
     fontSize: 30,
     paddingHorizontal: 20
