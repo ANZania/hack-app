@@ -5,6 +5,7 @@ import AppLoading from "expo-app-loading";
 import { StartScreen } from './src/screens/StartScreen';
 import { SignIn } from './src/screens/SignIn';
 import {bootstrap} from "./src/bootstrap";
+import CultureChoose from "./src/screens/CultureChoose";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -29,6 +30,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
         <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
       </Stack.Navigator>
