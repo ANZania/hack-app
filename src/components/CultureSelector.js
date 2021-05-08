@@ -19,7 +19,7 @@ const StyledSelectPicker = styled(SelectPicker)`
 `;
 
 
-export default function CultureSelector({options, placeholder, titleText, label}) {
+export default function CultureSelector({options, placeholder, onSelectOptionChange, value, label}) {
     const [selected, setSelected] = useState();
 
     return (
@@ -37,12 +37,11 @@ export default function CultureSelector({options, placeholder, titleText, label}
                 doneButtonText={'Готово'}
                 onSelectedStyle={{fontSize: 20, fontFamily: 'Inter-Bold', color: 'white'}}
                 placeholderStyle={{fontSize: 20, fontFamily: 'Inter-Bold', color: 'white'}}
-                onValueChange={(value) => {
-                    // Do anything you want with the value.
-                    // For example, save in state.
-                    setSelected(value);
+                onValueChange={e=> {
+                    onSelectOptionChange(e)
+                    setSelected(e)
                 }}
-                selected={selected}
+                selected={value}
             >
 
                 {[...Object.values(options).map((val, index) => (
@@ -51,7 +50,14 @@ export default function CultureSelector({options, placeholder, titleText, label}
 
             </StyledSelectPicker>
 
-            {selected === "Свой вариант" && <StrainInput isLabel={false} placeholder={"Название культуры"}/>}
+            {selected === "Свой вариант" && (
+                <StrainInput
+                    isLabel={false}
+                    placeholder={"Название культуры"}
+                    value={value}
+                    onInputTextChange={onSelectOptionChange}
+                />
+            )}
 
         </>
     )
