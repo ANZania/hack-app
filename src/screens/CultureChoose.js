@@ -1,10 +1,20 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {StyleSheet, ScrollView, StatusBar} from "react-native";
+import {StyleSheet, ScrollView, StatusBar, Button} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import CultureSelector from "../components/CultureSelector";
 import StrainInput from "../components/StrainInput";
 import {DateInput} from "../components/DateInput";
+import {store} from "../store";
+import {fieldInfoReducer} from "../store/reducers/fieldsInfo";
+import {
+    chooseCulture,
+    chooseHarvestDate,
+    chooseLastCulture,
+    chooseSeedDate,
+    chooseStrain
+} from "../store/actions/fieldsInfo";
+import {Provider, useSelector} from "react-redux";
 
 const options = ["Пшеница", "Рожь", "Пшено"];
 
@@ -50,11 +60,23 @@ export const CultureChoose = () => {
     const [seedDate, setSeedDate] = React.useState('')
     const [harvestDate, setHarvestDate] = React.useState('')
 
+    // const storedCulture = useSelector((state) => state.culture)
+
     function handleSeedDateSet(date) {
         setSeedDate(_ => date);
     }
+
     function handleHarvestDateSet(date) {
         setHarvestDate(_ => date);
+    }
+
+    function handleStorageUploadPress() {
+        store.dispatch(chooseCulture(culture))
+        store.dispatch(chooseStrain(strain))
+        store.dispatch(chooseLastCulture(lastCulture))
+        store.dispatch(chooseSeedDate(seedDate))
+        store.dispatch(chooseHarvestDate(harvestDate))
+
     }
 
     return (
@@ -95,13 +117,11 @@ export const CultureChoose = () => {
                 value={harvestDate}
                 onDateChange={handleHarvestDateSet}
             />
-            {/*<StateInfo>*/}
-            {/*    {culture+" "}*/}
-            {/*    {strain+" "}*/}
-            {/*    {lastCulture+" "}*/}
-            {/*    {seedDate+" "}*/}
-            {/*    {harvestDate+" "}*/}
-            {/*</StateInfo>*/}
+            {/* кнопка для сохранения state в store */}
+            <Button onPress={handleStorageUploadPress} title={"save state"}/>
+            {/*{<StateInfo>*/}
+            {/*    {store.getState().culture}*/}
+            {/*</StateInfo>}*/}
         </ScrollView>
     )
 }

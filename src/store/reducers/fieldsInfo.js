@@ -7,8 +7,8 @@ const initialState = {
     harvestDate: "",
 }
 
-export const postReducer = (state = initialState, action) => {
-    switch (action.type) {
+export const fieldInfoReducer = (state = initialState, action) => {
+    switch (action) {
         case 'culture/cultureAdded':
             return {
                 ...state,

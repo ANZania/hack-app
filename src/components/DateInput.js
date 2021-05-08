@@ -23,7 +23,6 @@ export const DateInput = ({title, style, onDateChange}) => {
         setDateForText(dateText)
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
-        //хз как работать будет
         onDateChange(dateForText)
     };
 

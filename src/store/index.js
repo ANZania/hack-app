@@ -1,9 +1,9 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
-import {postReducer} from "./reducers/fieldsInfo";
+import {fieldInfoReducer, postReducer} from "./reducers/fieldsInfo";
 
 const rootReducer = combineReducers({
-    postReducer
+    fieldInfoReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
