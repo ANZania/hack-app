@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1177FF'
   },
   buttonText: {
-    fontFamily: 'Italic-Bold',
+    fontFamily: 'Inter-Bold',
     color: "#fff",
     fontWeight: "500",
     fontSize: 24,

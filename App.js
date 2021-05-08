@@ -30,9 +30,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
         <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
+        <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

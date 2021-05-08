@@ -3,26 +3,25 @@ import {View, StyleSheet, Image, Text} from 'react-native'
 import {AppButton} from "../ui/AppButton";
 
 export const StartScreen = ({navigation}) => {
-    return (
-        <View style={styles.container}>
-          <View style={styles.banner}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.banner}>
 
-            <View style={styles.bannerBcg}>
-              <Image source={require('../../assets/img/start_logo.png')} style={styles.bannerImg} />
-            </View>
-          </View>
-          <View style={styles.contentWrapper}>
-            <Text style={styles.heading}>
-              Экспертные рекомендации
-            </Text>
-            <Text style={styles.description}>
-              Наш сервис позволяет получить комментарии специалиста о состоянии ваших
-            </Text>
-            <AppButton text='Начать' onPress={() => navigation.navigate('SignIn')}/>
-          </View>
+        <View style={styles.bannerBcg}>
+          <Image source={require('../../assets/img/start_logo.png')} style={styles.bannerImg} />
         </View>
-    )
-
+      </View>
+      <View style={styles.contentWrapper}>
+        <Text style={styles.heading}>
+          Экспертные рекомендации
+        </Text>
+        <Text style={styles.description}>
+          Наш сервис позволяет получить комментарии специалиста о состоянии ваших
+        </Text>
+        <AppButton text='Начать' onPress={() => navigation.navigate('SignIn')}/>
+      </View>
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   heading: {
-    fontFamily: 'Italic-Bold',
+    fontFamily: 'Inter-Bold',
     color: '#383842',
     fontWeight: "500",
     fontSize: 30,
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     lineHeight: 19,
-    fontFamily: 'Italic-Regular',
+    fontFamily: 'Inter-Regular',
     color: '#888891',
     paddingBottom: "12%"
   }

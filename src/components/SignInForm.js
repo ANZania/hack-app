@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         paddingTop: '5%'
     },
     heading: {
-        fontFamily: 'Italic-Medium',
+        fontFamily: 'Inter-Medium',
         fontSize: 20,
         marginBottom: '3%'
     },
