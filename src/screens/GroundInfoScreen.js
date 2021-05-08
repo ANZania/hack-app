@@ -108,4 +108,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 10
   },
+
 })

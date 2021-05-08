@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import { Logo } from '../components/logo';
 import {SignInForm} from "../components/SignInForm";
-import {Logo} from "../components/Logo";
 
 
 export const SignIn = ({navigation}) => {
+  const [reg, setReg] = useState(true)
     return (
         <View style={styles.mainWrap}>
             <View style={styles.logoWrap}>
                 <Logo />
             </View>
-            <SignInForm navigation={navigation}/>
+          <SignInForm navigation={navigation}/>
         </View>
     )
-};
+}
 
 const styles = StyleSheet.create({
     mainWrap: {

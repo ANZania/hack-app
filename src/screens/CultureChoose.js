@@ -17,33 +17,47 @@ const BigTitle = styled.Text`
 
 `;
 
-const Label = styled.Text`
-  font-size: 28px;
-  letter-spacing: 0;
-  margin-bottom: 11px;
+const StateInfo = styled.Text`
+  font-size: 14px;
+  margin: 30px;
   font-family: 'Inter-Medium';
 `;
+//
+// const StyledTextInput = styled.TextInput`
+//   font-size: 20px;
+//   background-color: rgba(255, 255, 255, 0.68);
+//   color: white;
+//   margin-bottom: 25px;
+//   padding: 11px;
+//   border-radius: 17px;
+//   border: 1px solid rgba(17, 119, 255, 0.7);
+//   font-family: 'Inter-SemiBold';
+// `;
 
-const StyledTextInput = styled.TextInput`
-  font-size: 20px;
-  background-color: rgba(255, 255, 255, 0.68);
-  color: white;
-  margin-bottom: 25px;
-  padding: 11px;
-  border-radius: 17px;
-  border: 1px solid rgba(17, 119, 255, 0.7);
-  font-family: 'Inter-SemiBold';
-`;
+// const StyledScrollView = styled.ScrollView`
+//   padding: 50px 20px;
+//   background-color: white;
+// `;
+//
+// const StyledSelectPicker = styled(SelectPicker)`
+//   margin-bottom: 25px;
+//
+// `;
 
-const StyledScrollView = styled.ScrollView`
-  padding: 50px 20px;
-  background-color: white;
-`;
 
-const StyledSelectPicker = styled(SelectPicker)`
-  margin-bottom: 25px;
+export const CultureChoose = () => {
+    const [culture, setCulture] = React.useState('')
+    const [strain, setStrain] = React.useState('')
+    const [lastCulture, setLastCulture] = React.useState('')
+    const [seedDate, setSeedDate] = React.useState('')
+    const [harvestDate, setHarvestDate] = React.useState('')
 
-`;
+    function handleSeedDateSet(date) {
+        setSeedDate(_ => date);
+    }
+    function handleHarvestDateSet(date) {
+        setHarvestDate(_ => date);
+    }
 
 
 export const CultureChoose = ({navigation}) => {
@@ -57,29 +71,43 @@ export const CultureChoose = ({navigation}) => {
                 options={options}
                 placeholder={'Выберите вариант или впишите свой'}
                 label={'Выращиваемая культура:'}
+                value={culture}
+                onSelectOptionChange={option => setCulture(option)}
             />
           </View>
 
           <View style={styles.card}>
-            <StrainInput placeholder={'Название сорта:'} label='Введите название сорта:'/>
+            <StrainInput placeholder={'Название сорта:'} label='Введите название сорта:' value={strain}
+                onInputTextChange={setStrain}/>
             <CultureSelector
                 options={options}
                 placeholder={'Выберите вариант или впишите свой'}
                 label={'Предыдущая культура:'}
+                value={lastCulture}
+                onSelectOptionChange={option => setLastCulture(option)}
             />
           </View>
 
           <View style={styles.card}>
-            <DateInput title='Дата посева:' style={{marginBottom: 30}} />
+            <DateInput title='Дата посева:' style={{marginBottom: 30}} value={seedDate}
+                onDateChange={handleSeedDateSet} />
           </View>
 
           <View style={styles.card}>
-            <DateInput title='Дата сбора предыдущей культуры' style={{marginBottom: 30}} />
+            <DateInput title='Дата сбора предыдущей культуры' style={{marginBottom: 30}} value={harvestDate}
+                onDateChange={handleHarvestDateSet} />
           </View>
           <View style={styles.buttonWrap}>
             <AppButton text={'Далее'} onPress={() => navigation.navigate('Ground')}/>
           </View>
         </ScrollView>
+            {/*<StateInfo>*/}
+            {/*    {culture+" "}*/}
+            {/*    {strain+" "}*/}
+            {/*    {lastCulture+" "}*/}
+            {/*    {seedDate+" "}*/}
+            {/*    {harvestDate+" "}*/}
+            {/*</StateInfo>*/}
       </View>
     )
 }
@@ -127,4 +155,5 @@ const styles = StyleSheet.create({
     height: 220,
     zIndex: -100,
   },
+
 })

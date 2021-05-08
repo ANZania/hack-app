@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {View, Text, TextInput} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import StrainInput from "./StrainInput";
 
@@ -21,7 +20,7 @@ const StyledSelectPicker = styled(SelectPicker)`
 `;
 
 
-export default function CultureSelector({options, placeholder, titleText, label}) {
+export default function CultureSelector({options, placeholder, onSelectOptionChange, value, label}) {
     const [selected, setSelected] = useState();
 
     return (
@@ -44,12 +43,13 @@ export default function CultureSelector({options, placeholder, titleText, label}
                 placeholder={placeholder}
                 titleText={placeholder}
                 doneButtonText={'Готово'}
-                onSelectedStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: '#919191'}}
-                placeholderStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: '#919191', lineHeight: 24}}
-                onValueChange={(value) => {
-                    setSelected(value);
+                onSelectedStyle={{fontSize: 20, fontFamily: 'Inter-Regular', color: '#919191'}}
+                placeholderStyle={{fontSize: 20, fontFamily: 'Inter-Regular', color: '#919191', lineHeight: 24}}
+                onValueChange={e=> {
+                    onSelectOptionChange(e)
+                    setSelected(e)
                 }}
-                selected={selected}
+                selected={value}
             >
 
                 {[...Object.values(options).map((val, index) => (
@@ -58,7 +58,16 @@ export default function CultureSelector({options, placeholder, titleText, label}
 
             </StyledSelectPicker>
 
-            {selected === "Свой вариант" && <StrainInput isLabel={false} placeholder={"Название культуры"} isNested={true} />}
+
+            {selected === "Свой вариант" && (
+                <StrainInput
+                    isLabel={false}
+                    placeholder={"Название культуры"}
+                    value={value}
+                    onInputTextChange={onSelectOptionChange}
+                    isNested={true}
+                />
+            )}
 
         </View>
     )
