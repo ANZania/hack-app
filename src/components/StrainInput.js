@@ -32,7 +32,11 @@ const StyledTextInput = styled.TextInput`
 `;
 
 
-export default function StrainInput({options, placeholder, isLabel = true, label = "Введите название сорта", isNested = false}) {
+export default function StrainInput({options,
+                                        placeholder,
+                                        label,
+                                        isLabel = true,
+                                        isNested = false}) {
 
     return (
         <View style={isNested ? styles.wrapNested : styles.wrap}>

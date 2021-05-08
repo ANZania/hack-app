@@ -12,7 +12,6 @@ import MapView, {
     Polygon,
     ProviderPropType,
 } from 'react-native-maps';
-import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -37,8 +36,6 @@ class PolygonCreator extends React.Component {
             polygons: [],
             editing: null,
             creatingHole: false,
-            navigation: useNavigation()
-
         };
     }
 

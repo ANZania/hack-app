@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {StyleSheet, ScrollView, StatusBar, View} from "react-native";
+import {StyleSheet, ScrollView, StatusBar, View, Image} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import CultureSelector from "../components/CultureSelector";
 import StrainInput from "../components/StrainInput";
 import {DateInput} from "../components/DateInput";
+import {AppButton} from "../ui/AppButton";
 
 const options = ["Пшеница", "Рожь", "Пшено"];
 
@@ -45,34 +46,38 @@ const StyledSelectPicker = styled(SelectPicker)`
 `;
 
 
-export const CultureChoose = () => {
+export const CultureChoose = ({navigation}) => {
     return (
       <View style={styles.containerWrap}>
         <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
-          <BigTitle>Введите информацию о поле</BigTitle>
+          <BigTitle>Введите информацию об участке</BigTitle>
+          <Image source={require('../../assets/img/agro6.png')} style={styles.promo} />
           <View style={styles.card}>
             <CultureSelector
                 options={options}
-                placeholder={'Выбери вариант или впиши свой'}
-                label={'Выберите культуру'}
+                placeholder={'Выберите вариант или впишите свой'}
+                label={'Выращиваемая культура:'}
             />
           </View>
 
           <View style={styles.card}>
-            <StrainInput placeholder={'Название сорта'} label='Введите название сорта'/>
+            <StrainInput placeholder={'Название сорта:'} label='Введите название сорта:'/>
             <CultureSelector
                 options={options}
-                placeholder={'Выбери вариант или впиши свой'}
-                label={'Выберите предыдущую культуру'}
+                placeholder={'Выберите вариант или впишите свой'}
+                label={'Предыдущая культура:'}
             />
           </View>
 
           <View style={styles.card}>
-            <DateInput title='Введите дату посева' style={{marginBottom: 30}} />
+            <DateInput title='Дата посева:' style={{marginBottom: 30}} />
           </View>
 
           <View style={styles.card}>
-            <DateInput title='Введите дату сбора предыдущей культуры' style={{marginBottom: 30}} />
+            <DateInput title='Дата сбора предыдущей культуры' style={{marginBottom: 30}} />
+          </View>
+          <View style={styles.buttonWrap}>
+            <AppButton text={'Далее'} onPress={() => navigation.navigate('Ground')}/>
           </View>
         </ScrollView>
       </View>
@@ -110,5 +115,16 @@ const styles = StyleSheet.create({
 
     flexDirection: 'column',
     justifyContent: 'space-between'
+  },
+  buttonWrap: {
+    width: '100%',
+    alignItems: 'center',
+    marginVertical: 10
+  },
+  promo: {
+    resizeMode: 'contain',
+    width: '100%',
+    height: 220,
+    zIndex: -100,
   },
 })
