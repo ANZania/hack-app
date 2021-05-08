@@ -21,12 +21,13 @@ const StyledTextInput = styled.TextInput`
 `;
 
 
-export default function StrainInput({placeholder, isLabel = true, label = "Введите название сорта"}) {
 
+export default function StrainInput({onInputTextChange,value, placeholder, isLabel = true, label = "Введите название сорта"}) {
+    // const [value, onChangeText] = React.useState('');
     return (
         <>
             {isLabel && <Label>{label}</Label>}
-            <StyledTextInput placeholder={placeholder}/>
+            <StyledTextInput placeholder={placeholder} value={value} onChangeText={onInputTextChange}/>
         </>
     )
 }

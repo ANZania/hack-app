@@ -1,38 +1,41 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {View, StyleSheet, Platform, Text, TouchableOpacity} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export const DateInput = ({title = null, style}) => {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [dateForText, setDateForText] = useState([]);
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
 
-  const addZero = n => n >= 10 ? n : '0' + n
+export const DateInput = ({title, style, onDateChange}) => {
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [dateForText, setDateForText] = useState([]);
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
 
-  const normalizeData = (date) => {
-    const day = addZero(date.getDate())
-    const month = addZero(date.getMonth())
-    const year = date.getFullYear().toString()
-    return [day, month, year]
-  }
+    const addZero = n => n >= 10 ? n : '0' + n
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    const dateText = normalizeData(currentDate)
-    setDateForText(dateText)
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
+    const normalizeData = (date) => {
+        const day = addZero(date.getDate())
+        const month = addZero(date.getMonth())
+        const year = date.getFullYear().toString()
+        return [day, month, year]
+    }
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        const dateText = normalizeData(currentDate)
+        setDateForText(dateText)
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+        //хз как работать будет
+        onDateChange(dateForText)
+    };
 
-  const showDatepicker = () => {
-    showMode('date');
-  };
+    // useEffect(() => {
+    //     onDateChange(dateForText)
+    // }, dateForText)
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode);
+    };
 
   return (
     <View style={style}>
