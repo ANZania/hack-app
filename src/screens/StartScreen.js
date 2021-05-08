@@ -8,7 +8,7 @@ export const StartScreen = ({navigation}) => {
       <View style={styles.banner}>
 
         <View style={styles.bannerBcg}>
-          <Image source={require('../../assets/img/start_logo.png')} style={styles.bannerImg} />
+          <Image source={require('../../assets/img/promoImg.png')} style={styles.bannerImg} />
         </View>
       </View>
       <View style={styles.contentWrapper}>
@@ -41,13 +41,16 @@ const styles = StyleSheet.create({
   },
   bannerImg: {
     zIndex: 100,
-    resizeMode: "cover"
+    height: '100%',
+    maxWidth: '100%',
+    resizeMode: "cover",
+    borderBottomRightRadius: 120
   },
   bannerBcg: {
     width: "100%",
     height: "100%",
     zIndex: 0,
-    backgroundColor: '#1177FF',
+    backgroundColor: '#459F40',
     alignItems: 'center',
     justifyContent: 'center',
     borderBottomRightRadius: 120

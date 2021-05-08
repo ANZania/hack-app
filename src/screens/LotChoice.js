@@ -12,7 +12,7 @@ export const LotChoice = ({navigation}) => {
             </Text>
             <View style={{width: '100%', marginTop: -75}}>
                 <View style={styles.imgWrap}>
-                    <Image source={require('../../assets/img/agro_tekh_5.png')} style={styles.promo} />
+                    <Image source={require('../../assets/img/agro1.png')} style={styles.promo} />
                 </View>
                 <View style={styles.inputWrap}>
                     <Text style={styles.tag}>
@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
     promo: {
         resizeMode: 'contain',
         width: '100%',
-        zIndex: -100
+        zIndex: -100,
+        marginRight: 30
     },
     inputWrap: {
         marginTop: -75,
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
         height: 40,
         minWidth: '90%',
         borderBottomWidth: 1,
-        borderBottomColor: '#000',
+        borderBottomColor: '#459F40',
         marginVertical: '3%',
     },
     buttonWrap: {

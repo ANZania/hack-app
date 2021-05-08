@@ -47,12 +47,15 @@ export const SignInForm = ({navigation}) => {
 
 const styles = StyleSheet.create({
     mainWrap: {
-        height: '100%',
+        height: '80%',
         width: '100%',
-        bottom: 0,
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-end',
+        position: 'absolute',
+        bottom: 0,
+        left: 0
+
     },
     loginWrap: {
         height: '80%',
@@ -74,21 +77,23 @@ const styles = StyleSheet.create({
         elevation: 13,
     },
     heading: {
-        fontFamily: 'Inter-Medium',
-        fontSize: 20,
-        marginBottom: '3%'
+        fontFamily: 'Inter-Bold',
+        fontSize: 22,
+        marginBottom: '3%',
+        color: '#000'
     },
     input: {
         height: 40,
         borderBottomWidth: 1,
-        borderBottomColor: '#000',
+        borderBottomColor: '#459F40',
         marginVertical: '3%',
     },
     buttonWrap: {
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingTop: '25%',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative',
+        top: '22%'
     },
     registerText: {
         fontFamily: 'Inter-Regular',
@@ -98,6 +103,6 @@ const styles = StyleSheet.create({
     registerLink: {
         fontFamily: 'Inter-Medium',
         fontSize: 16,
-        color: '#1177FF'
+        color: '#459F40'
     }
 })

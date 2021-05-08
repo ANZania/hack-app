@@ -9,7 +9,8 @@ export const Logo = () => (
 
 const styles = StyleSheet.create({
     logo: {
-        height: 192,
-        width: 192,
+        height: '100%',
+        width: '100%',
+        resizeMode: 'contain'
     }
 })
