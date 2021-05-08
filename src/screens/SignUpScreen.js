@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Logo } from '../components/logo';
+import { Logo } from '../components/Logo';
 import {SignInForm} from "../components/SignInForm";
 import {SignUpForm} from "../components/SignUpForm";
 

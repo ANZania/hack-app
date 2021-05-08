@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Logo } from '../components/logo';
+import { Logo } from '../components/Logo';
 import {SignInForm} from "../components/SignInForm";
 
 

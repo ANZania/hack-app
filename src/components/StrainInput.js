@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components/native'
-
 import {View, Text, TextInput, StyleSheet} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 
@@ -30,7 +29,7 @@ const StyledTextInput = styled.TextInput`
   width: 100%;
   height: 48px;
   margin: 5px 0;
-
+`
 
 export default function StrainInput({onInputTextChange,value, placeholder, isLabel = true, label = "Введите название сорта", isNested = false}) {
     // const [value, onChangeText] = React.useState('');

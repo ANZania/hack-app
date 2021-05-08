@@ -44,8 +44,7 @@ const StateInfo = styled.Text`
 //
 // `;
 
-
-export const CultureChoose = () => {
+export const CultureChoose = ({navigation}) => {
     const [culture, setCulture] = React.useState('')
     const [strain, setStrain] = React.useState('')
     const [lastCulture, setLastCulture] = React.useState('')
@@ -53,14 +52,11 @@ export const CultureChoose = () => {
     const [harvestDate, setHarvestDate] = React.useState('')
 
     function handleSeedDateSet(date) {
-        setSeedDate(_ => date);
+      setSeedDate(_ => date);
     }
     function handleHarvestDateSet(date) {
-        setHarvestDate(_ => date);
+      setHarvestDate(_ => date);
     }
-
-
-export const CultureChoose = ({navigation}) => {
     return (
       <View style={styles.containerWrap}>
         <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
@@ -97,17 +93,17 @@ export const CultureChoose = ({navigation}) => {
             <DateInput title='Дата сбора предыдущей культуры' style={{marginBottom: 30}} value={harvestDate}
                 onDateChange={handleHarvestDateSet} />
           </View>
+          {/*<StateInfo>*/}
+          {/*  {culture+" "}*/}
+          {/*  {strain+" "}*/}
+          {/*  {lastCulture+" "}*/}
+          {/*  {seedDate+" "}*/}
+          {/*  {harvestDate+" "}*/}
+          {/*</StateInfo>*/}
           <View style={styles.buttonWrap}>
             <AppButton text={'Далее'} onPress={() => navigation.navigate('Ground')}/>
           </View>
         </ScrollView>
-            {/*<StateInfo>*/}
-            {/*    {culture+" "}*/}
-            {/*    {strain+" "}*/}
-            {/*    {lastCulture+" "}*/}
-            {/*    {seedDate+" "}*/}
-            {/*    {harvestDate+" "}*/}
-            {/*</StateInfo>*/}
       </View>
     )
 }
@@ -155,5 +151,4 @@ const styles = StyleSheet.create({
     height: 220,
     zIndex: -100,
   },
-
 })

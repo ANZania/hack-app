@@ -37,6 +37,10 @@ export const DateInput = ({title, style, onDateChange}) => {
         setMode(currentMode);
     };
 
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
   return (
     <View style={{...styles.wrap, ...style}}>
       {title ? <Text style={styles.label}>{title}</Text> : null}

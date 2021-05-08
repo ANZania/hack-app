@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components/native'
 import SelectPicker from "react-native-form-select-picker";
 import StrainInput from "./StrainInput";
+import {View} from "react-native";
 
 const lastOption = <SelectPicker.Item label={"Свой вариант"} value={"Свой вариант"} key={666 + Math.random()}/>
 
