@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Logo } from '../components/logo';
 import {SignInForm} from "../components/SignInForm";
-import {SignUpForm} from "../components/SignUpForm";
 
 
 export const SignIn = ({navigation}) => {
@@ -10,7 +9,7 @@ export const SignIn = ({navigation}) => {
     return (
         <View style={styles.mainWrap}>
             <View style={styles.logoWrap}>
-                <Logo/>
+                <Logo />
             </View>
           <SignInForm navigation={navigation}/>
         </View>
@@ -28,8 +27,12 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     logoWrap: {
-        height: 192,
-        width: 192,
-        paddingTop: '10%'
+        position: 'relative',
+        top: '10%',
+        height: 160,
+        width: '100%',
+        paddingTop: '10%',
+        flexDirection: 'row',
+        alignItems: 'flex-end'
     }
 })

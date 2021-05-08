@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, ScrollView, Image, TextInput} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, Image, TextInput, TouchableOpacity} from 'react-native';
 import {AppButton} from "../ui/AppButton";
 
 export const LotChoice = ({navigation}) => {
@@ -12,7 +12,7 @@ export const LotChoice = ({navigation}) => {
             </Text>
             <View style={{width: '100%', marginTop: -75}}>
                 <View style={styles.imgWrap}>
-                    <Image source={require('../../assets/img/agro_tekh_5.png')} style={styles.promo} />
+                    <Image source={require('../../assets/img/agro1.png')} style={styles.promo} />
                 </View>
                 <View style={styles.inputWrap}>
                     <Text style={styles.tag}>
@@ -24,9 +24,20 @@ export const LotChoice = ({navigation}) => {
                         placeholder={'00:00:0000000:00'}
                         value={cad}/>
                 </View>
+                <View style={styles.ifWrap}>
+                    <Text style={styles.tagIf}>
+                        или
+                    </Text>
+                    <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('MapChoice')}>
+                        <Text style={styles.registerLink}>
+                            Нарисйте границы участка на карте
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
             <View style={styles.buttonWrap}>
                 <AppButton text={'Далее'} onPress={() => navigation.navigate('Map')}/>
+
             </View>
 
         </View>
@@ -56,7 +67,8 @@ const styles = StyleSheet.create({
     promo: {
         resizeMode: 'contain',
         width: '100%',
-        zIndex: -100
+        zIndex: -100,
+        marginRight: 30
     },
     inputWrap: {
         marginTop: -75,
@@ -74,7 +86,7 @@ const styles = StyleSheet.create({
         height: 40,
         minWidth: '90%',
         borderBottomWidth: 1,
-        borderBottomColor: '#000',
+        borderBottomColor: '#459F40',
         marginVertical: '3%',
     },
     buttonWrap: {
@@ -82,5 +94,23 @@ const styles = StyleSheet.create({
         bottom: 10,
         width: '100%',
         alignItems: 'center',
+    },
+    ifWrap: {
+        paddingHorizontal: 20,
+        marginTop: 30
+    },
+    tagIf: {
+        textAlign: 'center',
+        fontFamily: 'Inter-Medium',
+        fontSize: 18,
+        maxWidth: '100%',
+        marginBottom: 12
+    },
+    registerLink: {
+        textAlign: 'center',
+        marginBottom: '5%',
+        fontFamily: 'Inter-Medium',
+        fontSize: 16,
+        color: '#459F40'
     }
 })

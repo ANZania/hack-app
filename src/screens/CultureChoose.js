@@ -1,17 +1,19 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {StyleSheet, ScrollView, StatusBar} from "react-native";
+import {StyleSheet, ScrollView, StatusBar, View, Image} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import CultureSelector from "../components/CultureSelector";
 import StrainInput from "../components/StrainInput";
 import {DateInput} from "../components/DateInput";
+import {AppButton} from "../ui/AppButton";
 
 const options = ["Пшеница", "Рожь", "Пшено"];
 
 const BigTitle = styled.Text`
-  font-size: 35px;
+  font-size: 24px;
   margin-bottom: 30px;
-  font-family: 'Inter-ExtraBold';
+  margin-top: 10%;
+  font-family: 'Inter-Bold';
 
 `;
 
@@ -57,44 +59,48 @@ export const CultureChoose = () => {
         setHarvestDate(_ => date);
     }
 
+
+export const CultureChoose = ({navigation}) => {
     return (
-        <ScrollView style={styles.container}>
-            <StatusBar/>
-            <BigTitle>Введите информацию о поле</BigTitle>
+      <View style={styles.containerWrap}>
+        <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
+          <BigTitle>Введите информацию об участке</BigTitle>
+          <Image source={require('../../assets/img/agro6.png')} style={styles.promo} />
+          <View style={styles.card}>
             <CultureSelector
                 options={options}
-                placeholder={'Выбери вариант или впиши свой'}
-                label={'Выберите культуру'}
+                placeholder={'Выберите вариант или впишите свой'}
+                label={'Выращиваемая культура:'}
                 value={culture}
                 onSelectOptionChange={option => setCulture(option)}
             />
+          </View>
 
-            <StrainInput
-                value={strain}
-                onInputTextChange={setStrain}
-                placeholder={'Название сорта'}
-                label='Введите название сорта'/>
-
+          <View style={styles.card}>
+            <StrainInput placeholder={'Название сорта:'} label='Введите название сорта:' value={strain}
+                onInputTextChange={setStrain}/>
             <CultureSelector
                 options={options}
-                placeholder={'Выбери вариант или впиши свой'}
-                label={'Выберите предыдущую культуру'}
+                placeholder={'Выберите вариант или впишите свой'}
+                label={'Предыдущая культура:'}
                 value={lastCulture}
                 onSelectOptionChange={option => setLastCulture(option)}
             />
+          </View>
 
-            <DateInput
-                title='Введите дату посева'
-                style={{marginBottom: 30}}
-                value={seedDate}
-                onDateChange={handleSeedDateSet}
-            />
-            <DateInput
-                title='Введите дату сбора предыдущей культуры'
-                style={{marginBottom: 30}}
-                value={harvestDate}
-                onDateChange={handleHarvestDateSet}
-            />
+          <View style={styles.card}>
+            <DateInput title='Дата посева:' style={{marginBottom: 30}} value={seedDate}
+                onDateChange={handleSeedDateSet} />
+          </View>
+
+          <View style={styles.card}>
+            <DateInput title='Дата сбора предыдущей культуры' style={{marginBottom: 30}} value={harvestDate}
+                onDateChange={handleHarvestDateSet} />
+          </View>
+          <View style={styles.buttonWrap}>
+            <AppButton text={'Далее'} onPress={() => navigation.navigate('Ground')}/>
+          </View>
+        </ScrollView>
             {/*<StateInfo>*/}
             {/*    {culture+" "}*/}
             {/*    {strain+" "}*/}
@@ -102,14 +108,52 @@ export const CultureChoose = () => {
             {/*    {seedDate+" "}*/}
             {/*    {harvestDate+" "}*/}
             {/*</StateInfo>*/}
-        </ScrollView>
+      </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingHorizontal: 20,
-        backgroundColor: 'white',
-    }
+  containerWrap: {
+    flexGrow: 1,
+  },
+  container: {
+    paddingHorizontal: 20,
+    backgroundColor: 'white',
+  },
+
+  card: {
+    width: '99%',
+    overflow: 'hidden',
+    maxWidth: '100%',
+    maxHeight: 500,
+    marginVertical: 10,
+    borderColor: 'rgba(0, 0, 0, 0.05)',
+    borderRadius: 17,
+    backgroundColor: '#fff',
+    shadowColor: "#000",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 2.25,
+    elevation: 5,
+
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  buttonWrap: {
+    width: '100%',
+    alignItems: 'center',
+    marginVertical: 10
+  },
+  promo: {
+    resizeMode: 'contain',
+    width: '100%',
+    height: 220,
+    zIndex: -100,
+  },
+
 })

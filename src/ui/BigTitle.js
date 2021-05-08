@@ -9,8 +9,9 @@ export const BigTitle = ({text, style}) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 35,
+    fontSize: 24,
     marginBottom: 30,
-    fontFamily: 'Inter-ExtraBold',
+    fontFamily: 'Inter-Bold',
+    paddingTop: '10%'
   }
 })
