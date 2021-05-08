@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 18,
         paddingRight: '3%',
-        color: '#1177FF'
+        color: '#459F40'
     },
     buttonWrap: {
         marginVertical: 10,

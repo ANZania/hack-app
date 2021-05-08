@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {StyleSheet, ScrollView, StatusBar} from "react-native";
+import {StyleSheet, ScrollView, StatusBar, View} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import CultureSelector from "../components/CultureSelector";
 import StrainInput from "../components/StrainInput";
@@ -9,9 +9,9 @@ import {DateInput} from "../components/DateInput";
 const options = ["Пшеница", "Рожь", "Пшено"];
 
 const BigTitle = styled.Text`
-  font-size: 35px;
+  font-size: 24px;
   margin-bottom: 30px;
-  font-family: 'Inter-ExtraBold';
+  font-family: 'Inter-Bold';
 
 `;
 
@@ -46,24 +46,32 @@ const StyledSelectPicker = styled(SelectPicker)`
 
 export const CultureChoose = () => {
     return (
-      <ScrollView style={styles.container}>
-        <StatusBar />
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
           <BigTitle>Введите информацию о поле</BigTitle>
-          <CultureSelector
-            options={options}
-            placeholder={'Выбери вариант или впиши свой'}
-            label={'Выберите культуру'}
-          />
+          <View style={styles.card}>
+            <CultureSelector
+                options={options}
+                placeholder={'Выбери вариант или впиши свой'}
+                label={'Выберите культуру'}
+            />
+          </View>
 
+        <View style={styles.card}>
           <StrainInput placeholder={'Название сорта'} label='Введите название сорта'/>
           <CultureSelector
-            options={options}
-            placeholder={'Выбери вариант или впиши свой'}
-            label={'Выберите предыдущую культуру'}
+              options={options}
+              placeholder={'Выбери вариант или впиши свой'}
+              label={'Выберите предыдущую культуру'}
           />
+        </View>
 
+        <View style={styles.card}>
           <DateInput title='Введите дату посева' style={{marginBottom: 30}} />
+        </View>
+
+        <View style={styles.card}>
           <DateInput title='Введите дату сбора предыдущей культуры' style={{marginBottom: 30}} />
+        </View>
       </ScrollView>
     )
 }
@@ -73,5 +81,30 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     backgroundColor: 'white',
-  }
+    paddingVertical: '10%',
+  },
+
+  card: {
+    width: '99%',
+    overflow: 'hidden',
+    maxWidth: '100%',
+    height: 120,
+    marginVertical: 10,
+    borderColor: 'rgba(0, 0, 0, 0.05)',
+    borderRadius: 17,
+    backgroundColor: '#fff',
+    shadowColor: "#000",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 2.25,
+    elevation: 5,
+
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
+  },
 })

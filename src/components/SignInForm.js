@@ -34,7 +34,7 @@ export const SignInForm = ({navigation}) => {
                     <Text style={styles.registerText}>
                         Нет аккаунта?
                     </Text>
-                    <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
                         <Text style={styles.registerLink}>
                             Зарегистрироваться
                         </Text>

@@ -7,9 +7,10 @@ import StrainInput from "./StrainInput";
 const lastOption = <SelectPicker.Item label={"Свой вариант"} value={"Свой вариант"} key={666 + Math.random()}/>
 
 const Label = styled.Text`
-  font-size: 28px;
+  font-size: 18px;
   letter-spacing: 0;
   margin-bottom: 11px;
+  margin-left: 12px;
   font-family: 'Inter-Medium';
 `;
 
@@ -29,14 +30,14 @@ export default function CultureSelector({options, placeholder, titleText, label}
                 containerStyle={{backgroundColor: '#FFFFFF'}}
                 style={{
                     backgroundColor: 'rgba(51, 136, 255, 0.45)',
-                    paddingLeft: 10,
+                    paddingLeft: 17,
                     borderRadius: 17,
                 }}
                 placeholder={placeholder}
                 titleText={placeholder}
                 doneButtonText={'Готово'}
-                onSelectedStyle={{fontSize: 20, fontFamily: 'Inter-Bold', color: 'white'}}
-                placeholderStyle={{fontSize: 20, fontFamily: 'Inter-Bold', color: 'white'}}
+                onSelectedStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: 'white'}}
+                placeholderStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: 'white', lineHeight: 24}}
                 onValueChange={(value) => {
                     // Do anything you want with the value.
                     // For example, save in state.

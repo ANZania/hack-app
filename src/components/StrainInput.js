@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {View, Text, TextInput} from "react-native";
+import {View, Text, TextInput, StyleSheet} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 
 const options = ["Пшеница", "Рожь", "Пшено"];
@@ -36,8 +36,17 @@ export default function StrainInput({options, placeholder, isLabel = true, label
 
     return (
         <>
-            {isLabel && <Label>{label}</Label>}
-            <StyledTextInput placeholder={placeholder}/>
+            {isLabel && <Label style={styles.label}>{label}</Label>}
+            <StyledTextInput placeholder={placeholder} placeholderStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: 'white', lineHeight: 24}}/>
         </>
     )
 }
+
+const styles = StyleSheet.create({
+    label: {
+        fontSize: 18,
+        marginBottom: 11,
+        marginLeft: 12,
+        fontFamily: 'Inter-Medium'
+    }
+})

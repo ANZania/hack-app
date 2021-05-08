@@ -10,6 +10,7 @@ import { LotChoice } from "./src/screens/LotChoice";
 import { CultureChoose } from "./src/screens/CultureChoose";
 import { MapScreen } from "./src/screens/MapScreen";
 import {GroundInfoScreen} from "./src/screens/GroundInfoScreen";
+import {MapChoice} from "./src/screens/MapChoice";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -38,6 +39,7 @@ export default function App() {
         <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
         <Stack.Screen name="LotList" component={LotList} options={{headerShown: false}}/>
         <Stack.Screen name="LotChoice" component={LotChoice} options={{headerShown: false}}/>
+        <Stack.Screen name="MapChoice" component={MapChoice} options={{headerShown: false}}/>
         <Stack.Screen name="Map" component={MapScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Ground" component={GroundInfoScreen} options={{headerShown: false}}/>
         <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
