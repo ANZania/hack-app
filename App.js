@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AppLoading from "expo-app-loading";
 import { StartScreen } from './src/screens/StartScreen'
 import {bootstrap} from "./src/bootstrap";
+import {MapScreen} from "./src/screens/MapScreen";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -29,6 +30,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Map" component={MapScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
