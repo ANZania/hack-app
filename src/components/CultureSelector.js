@@ -13,10 +13,10 @@ const BigTitle = styled.Text`
 `;
 
 const Label = styled.Text`
-  font-size: 30px;
+  font-size: 28px;
   letter-spacing: 0;
   margin-bottom: 11px;
-  font-family: 'Inter-SemiBold';
+  font-family: 'Inter-Medium';
 `;
 
 
@@ -55,7 +55,7 @@ export default function CultureSelector({options, placeholder, titleText, label}
             >
 
                 {Object.values(options).map((val, index) => (
-                    <SelectPicker.Item label={val} value={val} key={index}/>
+                    <SelectPicker.Item label={val} value={val} key={index + Math.random()}/>
                 ))}
 
             </StyledSelectPicker>

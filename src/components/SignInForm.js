@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native';
 import {AppButton} from "../ui/AppButton";
 
 
-export const SignInForm = () => {
+export const SignInForm = ({navigation}) => {
     const [login, onChangeLogin] = React.useState(null);
     const [password, onChangePassword] = React.useState(null);
 
@@ -27,7 +27,7 @@ export const SignInForm = () => {
                     placeholder={'Пароль'}
                     value={password}
                 />
-                <AppButton/>
+                <AppButton onPress={() => navigation.navigate('Map')}/>
             </View>
         </View>)
 }

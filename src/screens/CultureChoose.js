@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {View, Text, TextInput} from "react-native";
+import {StyleSheet, ScrollView, StatusBar} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import CultureSelector from "../components/CultureSelector";
 import StrainInput from "../components/StrainInput";
+import {DateInput} from "../components/DateInput";
 
 const options = ["Пшеница", "Рожь", "Пшено"];
 
@@ -15,10 +16,10 @@ const BigTitle = styled.Text`
 `;
 
 const Label = styled.Text`
-  font-size: 30px;
+  font-size: 28px;
   letter-spacing: 0;
   margin-bottom: 11px;
-  font-family: 'Inter-SemiBold';
+  font-family: 'Inter-Medium';
 `;
 
 const StyledTextInput = styled.TextInput`
@@ -34,6 +35,7 @@ const StyledTextInput = styled.TextInput`
 
 const StyledScrollView = styled.ScrollView`
   padding: 50px 20px;
+  background-color: white;
 `;
 
 const StyledSelectPicker = styled(SelectPicker)`
@@ -42,19 +44,34 @@ const StyledSelectPicker = styled(SelectPicker)`
 `;
 
 
-export default function CultureChoose() {
-
+export const CultureChoose = () => {
     return (
-        <StyledScrollView>
+      <ScrollView style={styles.container}>
+        <StatusBar />
+          <BigTitle>Введите информацию о поле</BigTitle>
+          <CultureSelector
+            options={options}
+            placeholder={'Выбери вариант или впиши свой'}
+            label={'Выберите культуру'}
+          />
 
-            <BigTitle>Введите информацию о поле</BigTitle>
-            <CultureSelector options={options} placeholder={'Выбери вариант или впиши свой'} label={'Выберите культуру'}
-                             />
+          <StrainInput placeholder={'Название сорта'}/>
+          <CultureSelector
+            options={options}
+            placeholder={'Выбери вариант или впиши свой'}
+            label={'Выберите предыдущую культуру'}
+          />
 
-            <StrainInput placeholder={'Название сорта'}/>
-            <CultureSelector options={options} placeholder={'Выбери вариант или впиши свой'}
-                             label={'Выберите предыдущую культуру'} />
-
-        </StyledScrollView>
+          <DateInput title='Введите дату посева' style={{marginBottom: 30}} />
+          <DateInput title='Введите дату сбора предыдущей культуры' style={{marginBottom: 30}} />
+      </ScrollView>
     )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    backgroundColor: 'white',
+  }
+})

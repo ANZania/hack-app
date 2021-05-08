@@ -10,7 +10,7 @@ export const SignIn = ({navigation}) => {
             <View style={styles.logoWrap}>
                 <Logo/>
             </View>
-            <SignInForm/>
+            <SignInForm navigation={navigation}/>
         </View>
     )
 

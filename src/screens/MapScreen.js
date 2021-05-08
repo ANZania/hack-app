@@ -1,16 +1,18 @@
-import {Text, View, StyleSheet, StatusBar} from "react-native";
-import React from "react";
+import {Text, View, StyleSheet, StatusBar, Image, TouchableWithoutFeedback} from "react-native";
+import React, {useState} from "react";
 import {AppButton} from "../ui/AppButton";
 
 export const MapScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Здравствуйте, Александр!</Text>
-      <Text style={styles.subTitle}>Выберите участок</Text>
-      <View />
-      <View style={styles.buttonWrap}>
-        <AppButton text='Продолжить' />
+      <Text style={styles.subTitle}>Ваш участок</Text>
+      <View style={styles.imgWrap}>
+        <Image source={require('../../assets/img/map_fill.png')} style={styles.img} />
       </View>
+      <View style={styles.buttonWrap}>
+          <AppButton text='Продолжить' onPress={() => navigation.navigate('CultureSelect')} />
+        </View>
     </View>
   )
 }
@@ -18,24 +20,33 @@ export const MapScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight
+    flexDirection: 'column',
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: 'white'
   },
   heading: {
-    fontFamily: "Italic-ExtraBold",
+    fontFamily: "Inter-ExtraBold",
     color: "#000000",
     fontSize: 35,
     paddingHorizontal: 20,
-    marginBottom: 39
+    marginBottom: 20
   },
   subTitle: {
-    fontFamily: "Italic-Medium",
+    fontFamily: "Inter-Regular",
     color: "#000000",
-    fontSize: 30,
-    paddingHorizontal: 20
+    fontSize: 28,
+    paddingHorizontal: 20,
+    marginBottom: 10
+  },
+  imgWrap: {
+    paddingHorizontal: 20,
+  },
+  img: {
+    width: '100%',
+    resizeMode: 'contain'
   },
   buttonWrap: {
-    paddingHorizontal: 107,
-    position: 'absolute',
-    bottom: 120
+    paddingHorizontal: 40,
+    marginTop: '30%'
   }
 })
