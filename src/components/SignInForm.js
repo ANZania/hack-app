@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import {AppButton} from "../ui/AppButton";
 
 
 export const SignInForm = () => {
@@ -12,14 +13,12 @@ export const SignInForm = () => {
                 <Text style={styles.heading}>
                     Вход
                 </Text>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={onChangeLogin}
-                        placeholder={'Логин/номер телефона'}
-                        value={login}
-                    />
-                </View>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={onChangeLogin}
+                    placeholder={'Логин/номер телефона'}
+                    value={login}
+                />
 
                 <TextInput
                     secureTextEntry={true}
@@ -28,6 +27,7 @@ export const SignInForm = () => {
                     placeholder={'Пароль'}
                     value={password}
                 />
+                <AppButton/>
             </View>
         </View>)
 }
