@@ -46,7 +46,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   buttonWrap: {
-    paddingHorizontal: 40,
-    marginTop: '30%'
+    position: 'absolute',
+    width: '85%',
+    bottom: 40,
+    alignSelf: 'center',
   }
 })

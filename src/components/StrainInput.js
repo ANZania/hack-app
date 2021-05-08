@@ -37,7 +37,7 @@ export default function StrainInput({options, placeholder, titleText, label}) {
 
     return (
         <>
-            <Label>Введите название сорта</Label>
+            <Label>{label}</Label>
             <StyledTextInput placeholder={placeholder}/>
         </>
     )

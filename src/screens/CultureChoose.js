@@ -55,7 +55,7 @@ export const CultureChoose = () => {
             label={'Выберите культуру'}
           />
 
-          <StrainInput placeholder={'Название сорта'}/>
+          <StrainInput placeholder={'Название сорта'} label='Введите название сорта'/>
           <CultureSelector
             options={options}
             placeholder={'Выбери вариант или впиши свой'}
