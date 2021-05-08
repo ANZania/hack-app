@@ -10,6 +10,13 @@ import { LotChoice } from "./src/screens/LotChoice";
 import { CultureChoose } from "./src/screens/CultureChoose";
 import { MapScreen } from "./src/screens/MapScreen";
 import {GroundInfoScreen} from "./src/screens/GroundInfoScreen";
+import {CultureInfoScreen} from "./src/screens/CultureInfoScreen";
+import {ClimateScreen} from "./src/screens/ClimateScreen";
+import {YieldScreen} from "./src/screens/YieldScreen";
+import {DeadLinesScreen} from "./src/screens/DeadLinesScreen";
+import {HealthGroundScreen} from "./src/screens/HealthGroundScreen";
+import {LastInfoScreen} from "./src/screens/LastInfoScreen";
+import {DetailScreen} from "./src/screens/DetailScreen";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -41,6 +48,13 @@ export default function App() {
         <Stack.Screen name="Map" component={MapScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Ground" component={GroundInfoScreen} options={{headerShown: false}}/>
         <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
+        <Stack.Screen name="CultureInfo" component={CultureInfoScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Climate" component={ClimateScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Yield" component={YieldScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Deadlines" component={DeadLinesScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Health" component={HealthGroundScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Last" component={LastInfoScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

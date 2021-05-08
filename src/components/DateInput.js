@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {View, StyleSheet, Platform, Text, TouchableOpacity} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-export const DateInput = ({title, style}) => {
+export const DateInput = ({title = null, style}) => {
   const [date, setDate] = useState(new Date(1598051730000));
   const [dateForText, setDateForText] = useState([]);
   const [mode, setMode] = useState('date');
@@ -36,7 +36,7 @@ export const DateInput = ({title, style}) => {
 
   return (
     <View style={style}>
-      <Text style={styles.titleText}>{title}</Text>
+      {title ? <Text style={styles.titleText}>{title}</Text> : null}
       <TouchableOpacity style={styles.inputWrap} onPress={showDatepicker}>
         <Text style={styles.text}>
           {
@@ -64,7 +64,7 @@ export const DateInput = ({title, style}) => {
 
 const styles = StyleSheet.create({
   inputWrap: {
-    backgroundColor: 'rgba(51, 136, 255, 0.45)',
+    backgroundColor: '#459F40',
     paddingLeft: 10,
     borderRadius: 17,
     paddingVertical: 7
