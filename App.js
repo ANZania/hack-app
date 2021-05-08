@@ -5,10 +5,10 @@ import AppLoading from "expo-app-loading";
 import { StartScreen } from './src/screens/StartScreen';
 import { SignIn } from './src/screens/SignIn';
 import { bootstrap } from "./src/bootstrap";
-import CultureChoose from "./src/screens/CultureChoose";
 import { LotList } from "./src/screens/LotList";
-import {LotChoice} from "./src/screens/LotChoice";
-import {MapScreen} from "./src/screens/MapScreen";
+import { LotChoice } from "./src/screens/LotChoice";
+import { CultureChoose } from "./src/screens/CultureChoose";
+import { MapScreen } from "./src/screens/MapScreen";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)

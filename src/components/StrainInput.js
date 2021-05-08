@@ -8,22 +8,22 @@ const options = ["Пшеница", "Рожь", "Пшено"];
 const BigTitle = styled.Text`
   font-size: 35px;
   margin-bottom: 30px;
-  font-family: 'Inter-ExtraBold';
+  font-family: 'Inter';
 
 `;
 
 const Label = styled.Text`
-  font-size: 30px;
+  font-size: 28px;
   letter-spacing: 0;
   margin-bottom: 11px;
-  font-family: 'Inter-SemiBold';
+  font-family: 'Inter-Medium';
 `;
 
 
 const StyledTextInput = styled.TextInput`
   font-size: 20px;
   background-color: rgba(255, 255, 255, 0.68);
-  color: white;
+  color: black;
   margin-bottom: 25px;
   padding: 11px;
   border-radius: 17px;
@@ -39,7 +39,6 @@ export default function StrainInput({options, placeholder, titleText, label}) {
         <>
             <Label>Введите название сорта</Label>
             <StyledTextInput placeholder={placeholder}/>
-
         </>
     )
 }
