@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components/native'
-import {View, Text, TextInput} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
 import StrainInput from "./StrainInput";
 
@@ -28,7 +27,7 @@ export default function CultureSelector({options, placeholder, onSelectOptionCha
             <StyledSelectPicker
                 containerStyle={{backgroundColor: '#FFFFFF'}}
                 style={{
-                    backgroundColor: 'rgba(51, 136, 255, 0.45)',
+                    backgroundColor: '#459F40',
                     paddingLeft: 10,
                     borderRadius: 17,
                 }}

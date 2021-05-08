@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: '#1177FF'
+    backgroundColor: '#459F40'
   },
   buttonText: {
     fontFamily: 'Inter-Bold',
