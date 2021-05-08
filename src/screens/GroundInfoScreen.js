@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     padding: 11,
     borderRadius: 17,
     borderWidth: 1,
-    borderColor: 'rgba(17, 119, 255, 0.7)',
+    borderColor: '#459F40',
     fontFamily: 'Inter-SemiBold',
   }
 })

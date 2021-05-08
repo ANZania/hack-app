@@ -1,16 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components/native'
-import {View, Text, TextInput} from "react-native";
-import SelectPicker from "react-native-form-select-picker";
-
-const options = ["Пшеница", "Рожь", "Пшено"];
-
-const BigTitle = styled.Text`
-  font-size: 35px;
-  margin-bottom: 30px;
-  font-family: 'Inter';
-
-`;
 
 const Label = styled.Text`
   font-size: 28px;
@@ -27,9 +16,10 @@ const StyledTextInput = styled.TextInput`
   margin-bottom: 25px;
   padding: 11px;
   border-radius: 17px;
-  border: 1px solid rgba(17, 119, 255, 0.7);
+  border: 1px solid #459F40;
   font-family: 'Inter-SemiBold';
 `;
+
 
 
 export default function StrainInput({onInputTextChange,value, placeholder, isLabel = true, label = "Введите название сорта"}) {
