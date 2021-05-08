@@ -35,8 +35,8 @@ export const DateInput = ({title, style}) => {
   };
 
   return (
-    <View style={style}>
-      <Text style={styles.titleText}>{title}</Text>
+    <View style={styles.wrap}>
+      <Text style={styles.label}>{title}</Text>
       <TouchableOpacity style={styles.inputWrap} onPress={showDatepicker}>
         <Text style={styles.text}>
           {
@@ -63,21 +63,40 @@ export const DateInput = ({title, style}) => {
 }
 
 const styles = StyleSheet.create({
+  wrap: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 5
+  },
   inputWrap: {
-    backgroundColor: 'rgba(51, 136, 255, 0.45)',
-    paddingLeft: 10,
-    borderRadius: 17,
-    paddingVertical: 7
+    fontSize: 16,
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    color: '#919191',
+    padding: 11,
+    borderRadius: 12,
+    fontFamily: 'Inter-Regular',
+    width: '100%',
+    height: 48
   },
   text: {
-    color: 'white',
+    color: '#919191',
     fontWeight: "500",
-    fontFamily: "Inter-Medium",
-    fontSize: 20,
+    fontFamily: "Inter-Light",
+    fontSize: 16,
+    lineHeight: 24
   },
   titleText: {
     fontFamily: "Inter-Medium",
     fontSize: 28,
     marginBottom: 11
+  },
+  label: {
+    fontSize: 18,
+    marginBottom: 11,
+    marginLeft: 12,
+    fontFamily: 'Inter-Medium',
+    width: '100%'
   }
 })

@@ -11,6 +11,7 @@ const options = ["Пшеница", "Рожь", "Пшено"];
 const BigTitle = styled.Text`
   font-size: 24px;
   margin-bottom: 30px;
+  margin-top: 10%;
   font-family: 'Inter-Bold';
 
 `;
@@ -46,7 +47,8 @@ const StyledSelectPicker = styled(SelectPicker)`
 
 export const CultureChoose = () => {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
+      <View style={styles.containerWrap}>
+        <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
           <BigTitle>Введите информацию о поле</BigTitle>
           <View style={styles.card}>
             <CultureSelector
@@ -56,39 +58,41 @@ export const CultureChoose = () => {
             />
           </View>
 
-        <View style={styles.card}>
-          <StrainInput placeholder={'Название сорта'} label='Введите название сорта'/>
-          <CultureSelector
-              options={options}
-              placeholder={'Выбери вариант или впиши свой'}
-              label={'Выберите предыдущую культуру'}
-          />
-        </View>
+          <View style={styles.card}>
+            <StrainInput placeholder={'Название сорта'} label='Введите название сорта'/>
+            <CultureSelector
+                options={options}
+                placeholder={'Выбери вариант или впиши свой'}
+                label={'Выберите предыдущую культуру'}
+            />
+          </View>
 
-        <View style={styles.card}>
-          <DateInput title='Введите дату посева' style={{marginBottom: 30}} />
-        </View>
+          <View style={styles.card}>
+            <DateInput title='Введите дату посева' style={{marginBottom: 30}} />
+          </View>
 
-        <View style={styles.card}>
-          <DateInput title='Введите дату сбора предыдущей культуры' style={{marginBottom: 30}} />
-        </View>
-      </ScrollView>
+          <View style={styles.card}>
+            <DateInput title='Введите дату сбора предыдущей культуры' style={{marginBottom: 30}} />
+          </View>
+        </ScrollView>
+      </View>
     )
 }
 
 const styles = StyleSheet.create({
+  containerWrap: {
+    flexGrow: 1,
+  },
   container: {
-    flex: 1,
     paddingHorizontal: 20,
     backgroundColor: 'white',
-    paddingVertical: '10%',
   },
 
   card: {
     width: '99%',
     overflow: 'hidden',
     maxWidth: '100%',
-    height: 120,
+    maxHeight: 500,
     marginVertical: 10,
     borderColor: 'rgba(0, 0, 0, 0.05)',
     borderRadius: 17,
@@ -105,6 +109,6 @@ const styles = StyleSheet.create({
     elevation: 5,
 
     flexDirection: 'column',
-    justifyContent: 'flex-start'
+    justifyContent: 'space-between'
   },
 })

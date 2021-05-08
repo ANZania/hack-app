@@ -9,14 +9,15 @@ const lastOption = <SelectPicker.Item label={"Свой вариант"} value={"
 const Label = styled.Text`
   font-size: 18px;
   letter-spacing: 0;
-  margin-bottom: 11px;
   margin-left: 12px;
+  margin-bottom: 5px;
   font-family: 'Inter-Medium';
+  width: 100%;
 `;
 
 
 const StyledSelectPicker = styled(SelectPicker)`
-  margin-bottom: 25px;
+  width: 100%
 `;
 
 
@@ -24,23 +25,28 @@ export default function CultureSelector({options, placeholder, titleText, label}
     const [selected, setSelected] = useState();
 
     return (
-        <>
+        <View style={{
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            paddingVertical: 5,
+            paddingHorizontal: 5}}>
             <Label>{label}</Label>
             <StyledSelectPicker
                 containerStyle={{backgroundColor: '#FFFFFF'}}
                 style={{
-                    backgroundColor: 'rgba(51, 136, 255, 0.45)',
-                    paddingLeft: 17,
-                    borderRadius: 17,
+                    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                    paddingLeft: 12,
+                    marginTop: 10,
+                    borderRadius: 12,
+                    height: 48
                 }}
                 placeholder={placeholder}
                 titleText={placeholder}
                 doneButtonText={'Готово'}
-                onSelectedStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: 'white'}}
-                placeholderStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: 'white', lineHeight: 24}}
+                onSelectedStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: '#919191'}}
+                placeholderStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: '#919191', lineHeight: 24}}
                 onValueChange={(value) => {
-                    // Do anything you want with the value.
-                    // For example, save in state.
                     setSelected(value);
                 }}
                 selected={selected}
@@ -52,8 +58,8 @@ export default function CultureSelector({options, placeholder, titleText, label}
 
             </StyledSelectPicker>
 
-            {selected === "Свой вариант" && <StrainInput isLabel={false} placeholder={"Название культуры"}/>}
+            {selected === "Свой вариант" && <StrainInput isLabel={false} placeholder={"Название культуры"} isNested={true} />}
 
-        </>
+        </View>
     )
 }
