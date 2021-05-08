@@ -4,7 +4,7 @@ import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
 
-export const GroundInfoScreen = () => {
+export const GroundInfoScreen = ({navigation}) => {
   return (
     <View style={styles.wrapper}>
       <ScrollView style={styles.container}  contentContainerStyle={{ alignItems: 'center' }}>
@@ -32,7 +32,7 @@ export const GroundInfoScreen = () => {
         </View>
 
         <View style={styles.buttonWrap}>
-          <AppButton text={'Далее'} onPress={() => navigation.navigate('Ground')}/>
+          <AppButton text={'Далее'} onPress={() => navigation.navigate('CultureInfo')}/>
         </View>
       </ScrollView>
     </View>

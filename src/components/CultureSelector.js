@@ -44,8 +44,8 @@ export default function CultureSelector({options, placeholder, onSelectOptionCha
                 placeholder={placeholder}
                 titleText={placeholder}
                 doneButtonText={'Готово'}
-                onSelectedStyle={{fontSize: 20, fontFamily: 'Inter-Regular', color: '#919191'}}
-                placeholderStyle={{fontSize: 20, fontFamily: 'Inter-Regular', color: '#919191', lineHeight: 24}}
+                onSelectedStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: '#919191'}}
+                placeholderStyle={{fontSize: 16, fontFamily: 'Inter-Regular', color: '#919191', lineHeight: 24}}
                 onValueChange={e=> {
                     onSelectOptionChange(e)
                     setSelected(e)

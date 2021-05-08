@@ -31,7 +31,14 @@ const StyledTextInput = styled.TextInput`
   margin: 5px 0;
 `
 
-export default function StrainInput({onInputTextChange,value, placeholder, isLabel = true, label = "Введите название сорта", isNested = false}) {
+export default function StrainInput({
+                                        onInputTextChange,
+                                        value,
+                                        placeholder,
+                                        isLabel = true,
+                                        label = "Введите название сорта",
+                                        isNested = false
+}) {
     // const [value, onChangeText] = React.useState('');
     return (
         <View style={isNested ? styles.wrapNested : styles.wrap}>
@@ -67,5 +74,5 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 5,
-    }
+    },
 })

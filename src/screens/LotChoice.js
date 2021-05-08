@@ -30,7 +30,7 @@ export const LotChoice = ({navigation}) => {
                     </Text>
                     <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('MapChoice')}>
                         <Text style={styles.registerLink}>
-                            Нарисйте границы участка на карте
+                            Нарисуйте границы участка на карте
                         </Text>
                     </TouchableOpacity>
                 </View>
