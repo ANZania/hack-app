@@ -2,15 +2,9 @@ import React, {useState} from 'react'
 import styled from 'styled-components/native'
 import {View, Text, TextInput} from "react-native";
 import SelectPicker from "react-native-form-select-picker";
+import StrainInput from "./StrainInput";
 
-const options = ["Пшеница", "Рожь", "Пшено"];
-
-const BigTitle = styled.Text`
-  font-size: 35px;
-  margin-bottom: 30px;
-  font-family: 'Inter-ExtraBold';
-
-`;
+const lastOption = <SelectPicker.Item label={"Свой вариант"} value={"Свой вариант"} key={666 + Math.random()}/>
 
 const Label = styled.Text`
   font-size: 28px;
@@ -22,7 +16,6 @@ const Label = styled.Text`
 
 const StyledSelectPicker = styled(SelectPicker)`
   margin-bottom: 25px;
-
 `;
 
 
@@ -37,9 +30,7 @@ export default function CultureSelector({options, placeholder, titleText, label}
                 style={{
                     backgroundColor: 'rgba(51, 136, 255, 0.45)',
                     paddingLeft: 10,
-                    //borderWidth: 1,
                     borderRadius: 17,
-                    // borderColor: 'rgba(17, 119, 255, 0.7)'
                 }}
                 placeholder={placeholder}
                 titleText={placeholder}
@@ -54,11 +45,13 @@ export default function CultureSelector({options, placeholder, titleText, label}
                 selected={selected}
             >
 
-                {Object.values(options).map((val, index) => (
+                {[...Object.values(options).map((val, index) => (
                     <SelectPicker.Item label={val} value={val} key={index + Math.random()}/>
-                ))}
+                )), lastOption]}
 
             </StyledSelectPicker>
+
+            {selected === "Свой вариант" && <StrainInput isLabel={false} placeholder={"Название культуры"}/>}
 
         </>
     )
