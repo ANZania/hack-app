@@ -1,5 +1,5 @@
 import React from "react";
-import {View StyleSheet, StatusBar} from 'react-native'
+import {View, StyleSheet, StatusBar} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 

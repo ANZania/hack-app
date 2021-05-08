@@ -1,11 +1,31 @@
-import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity, ToastAndroid, ActivityIndicator} from 'react-native';
 import {AppButton} from "../ui/AppButton";
-
+import firebase from './Firebase'
 
 export const SignInForm = ({navigation}) => {
     const [login, onChangeLogin] = React.useState(null);
     const [password, onChangePassword] = React.useState(null);
+    const [loading, setLoading] = useState(false)
+
+    const AuthHandler = async (email, pass) => {
+      try {
+        setLoading(true)
+        await firebase.auth().signInWithEmailAndPassword(email, pass)
+        setLoading(false)
+        navigation.navigate('LotList')
+      } catch (e) {
+        setLoading(false)
+        const errorCode = e.code;
+        if (errorCode === 'auth/invalid-email') {
+          ToastAndroid.show('Указан неверный email', ToastAndroid.LONG);
+        } else if (errorCode === 'auth/user-not-found') {
+          ToastAndroid.show('Пользователь с данный адресом не найдем', ToastAndroid.LONG);
+        } else if (errorCode === 'auth/wrong-password') {
+          ToastAndroid.show('Указан неверный пароль', ToastAndroid.LONG);
+        }
+      }
+    }
 
     return(
         <View style={styles.mainWrap}>
@@ -17,7 +37,7 @@ export const SignInForm = ({navigation}) => {
                     <TextInput
                         style={styles.input}
                         onChangeText={onChangeLogin}
-                        placeholder={'Логин/номер телефона'}
+                        placeholder={'Логин/Адрес электронной почты'}
                         value={login}
                     />
 
@@ -30,11 +50,13 @@ export const SignInForm = ({navigation}) => {
                     />
                 </View>
                 <View style={styles.buttonWrap}>
-                    <AppButton text={'Войти'} onPress={() => navigation.navigate('LotList')}/>
+                  {
+                    loading ? <ActivityIndicator size="large" color="#459F40" /> : <AppButton text={'Войти'} onPress={() => AuthHandler(login, password)}/>
+                  }
                     <Text style={styles.registerText}>
                         Нет аккаунта?
                     </Text>
-                    <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.navigate('SignUp')}>
                         <Text style={styles.registerLink}>
                             Зарегистрироваться
                         </Text>
