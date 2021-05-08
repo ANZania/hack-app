@@ -32,12 +32,11 @@ const StyledTextInput = styled.TextInput`
 `;
 
 
-
-export default function StrainInput({options, placeholder, titleText, label}) {
+export default function StrainInput({options, placeholder, isLabel = true, label = "Введите название сорта"}) {
 
     return (
         <>
-            <Label>{label}</Label>
+            {isLabel && <Label>{label}</Label>}
             <StyledTextInput placeholder={placeholder}/>
         </>
     )
