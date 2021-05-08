@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   subTitle: {
-    fontFamily: "Inter-Regular",
+    fontFamily: "Inter-Medium",
     color: "#000000",
     fontSize: 28,
     paddingHorizontal: 20,
