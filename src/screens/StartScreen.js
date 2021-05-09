@@ -6,7 +6,6 @@ export const StartScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.banner}>
-
         <View style={styles.bannerBcg}>
           <Image source={require('../../assets/img/promoImg.png')} style={styles.bannerImg} />
         </View>
@@ -16,9 +15,9 @@ export const StartScreen = ({navigation}) => {
           Экспертные рекомендации
         </Text>
         <Text style={styles.description}>
-          Наш сервис позволяет получить комментарии специалиста о состоянии ваших
+          Наш сервис позволяет получить комментарии специалиста о состоянии ваших полей
         </Text>
-        <AppButton text='Начать' onPress={() => navigation.navigate('SignIn')}/>
+        <AppButton text='Начать' onPress={() => navigation.navigate('SignIn')} />
       </View>
     </View>
   )

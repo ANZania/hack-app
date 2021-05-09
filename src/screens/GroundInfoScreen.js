@@ -3,7 +3,7 @@ import {Image, ScrollView, StatusBar, StyleSheet, Text, TextInput, View} from "r
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
   chooseNitrogen,
   choosePercentWater,
@@ -11,6 +11,7 @@ import {
   chooseRootDeep, chooseTemp,
   chooseTypeGround
 } from "../store/actions/fieldsInfo";
+import Toast from "react-native-root-toast";
 
 export const GroundInfoScreen = ({navigation}) => {
   const [typeGround, setTypeGround] = useState('')
@@ -40,7 +41,16 @@ export const GroundInfoScreen = ({navigation}) => {
             placeholder='Процент содержания влаги...'
             label='Введите % содержания влаги в почве:'
             typeKeyBoard='numeric'
-            onInputTextChange={(text) => setPercentWater(text)}
+            maxLength={4}
+            onInputTextChange={(text) => {
+              if (text > 100 || text < 0) {
+                let toast = Toast.show('Укажите корректное значение процента', {
+                  duration: Toast.durations.SHORT,
+                });
+              } else {
+                setPercentWater(text)
+              }
+            }}
             value={percentWater} />
         </View>
         <View style={styles.card}>
@@ -48,7 +58,15 @@ export const GroundInfoScreen = ({navigation}) => {
             placeholder='Глубина корневой системы...'
             label='Максимальная глубина корневой системы культуры (в см):'
             typeKeyBoard='numeric'
-            onInputTextChange={(text) => setRootDeep(text)}
+            onInputTextChange={(text) => {
+              if (text < 0) {
+                let toast = Toast.show('Укажите корректное значение', {
+                  duration: Toast.durations.SHORT,
+                });
+              } else {
+                setRootDeep(text)
+              }
+            }}
             value={rootDeep} />
         </View>
         <View style={styles.card}>

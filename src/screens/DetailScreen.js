@@ -6,7 +6,49 @@ import {AppButton} from "../ui/AppButton";
 import {useSelector} from "react-redux";
 
 export const DetailScreen = ({navigation}) => {
-  const [done, setDone] = useState(false)
+  const [done, setDone] = useState(true)
+  let store = useSelector(state => state.info)
+  store = {
+        "avgPlantGrow": "20",
+        "badPlants": "25",
+        "culture": "Рожь",
+        "comment": "Сделайте красиво",
+        "deadlines": "Я не знаю что это",
+        "harvestDate": "13.08.2020",
+        "lastCulture": "Кукуруза",
+        "nitrogen": "45",
+        "percentIil": "20",
+        "percentWater": "38",
+        "ph": "29",
+        "phosphor": "282",
+        "potassium": "2882",
+        "projectPok": "38",
+        "rootDeep": "33",
+        "seedDate": "03.05.2020",
+        "snowDeep": "29",
+        "strain": "Яровая",
+        "temp": "20",
+        "typeGround": "Чернозём",
+        "unit": "Т/Га",
+        "weekTemp": {
+            "25.05.2021": "2",
+            "26.05.2021": "3",
+            "27.05.2021": "3",
+            "28.05.2021": "2",
+            "29.05.2021": "3",
+            "30.05.2021": "3",
+            "31.05.2021": "4",
+        },
+        "yield":  {
+          "": "",
+            "03.05.2021": "",
+            "04.05.2021": "3",
+            "05.05.2021": "5",
+            "06.05.2021": "4",
+            "08.05.2021": "",
+        }
+    }
+
 
 
   return (
@@ -27,8 +69,26 @@ export const DetailScreen = ({navigation}) => {
         {
           done
               ? <ScrollView style={styles.decisionWrap}>
-                <Text style={styles.decisionTitle}>Рекомендации</Text>
-              </ScrollView>
+                  <Text style={styles.decisionTitle}>Рекомендации</Text>
+                  <View style={styles.descCard}>
+                    <Text style={styles.descCardTitle} >Заключение состояния поля</Text>
+                    <Text numberOfLines={5} style={styles.descDescription}>
+                      Иалпоывадлывоалоыдатолукиащцфруаофвытдалоывфлаоифывлоаиылвоалываоывлоатылвоаывл
+                    </Text>
+                  </View>
+                  <View style={styles.descCard}>
+                    <Text style={styles.descCardTitle} >Рекомендации</Text>
+                    <Text numberOfLines={5} style={styles.descDescription}>
+                      Иалпоывадлывоалоыдатолукиащцфруаофвытдалоывфлаоифывлоаиылвоалываоывлоатылвоаывл
+                    </Text>
+                  </View>
+                  <View style={styles.descCard}>
+                    <Text style={styles.descCardTitle} >Ожидаемый результат</Text>
+                    <Text numberOfLines={5} style={styles.descDescription}>
+                      Иалпоывадлывоалоыдатолукиащцфруаофвытдалоывфлаоифывлоаиылвоалываоывлоатылвоаывл
+                    </Text>
+                  </View>
+                </ScrollView>
               : null
         }
         <View style={styles.infoWrap}>
@@ -51,7 +111,7 @@ export const DetailScreen = ({navigation}) => {
                 Выращиваемая культура:
               </Text>
               <Text style={styles.infoText}>
-                Пшеница
+                {store.culture}
               </Text>
             </View>
             <View style={styles.infoBlock}>
@@ -59,51 +119,113 @@ export const DetailScreen = ({navigation}) => {
                 Сорт:
               </Text>
               <Text style={styles.infoText}>
-                Яровая твердая
+                {store.strain}
               </Text>
             </View>
             <View style={styles.infoBlock}>
               <Text style={styles.infoHeading}>
-                Сорт:
+                Дата посева:
               </Text>
               <Text style={styles.infoText}>
-                Яровая твердая
+                {store.seedDate}
               </Text>
             </View>
             <View style={styles.infoBlock}>
               <Text style={styles.infoHeading}>
-                Сорт:
+                Дата сбора урожая:
               </Text>
               <Text style={styles.infoText}>
-                Яровая твердая
+                {store.harvestDate}
               </Text>
             </View>
             <View style={styles.infoBlock}>
               <Text style={styles.infoHeading}>
-                Сорт:
+                Предыдущая культура:
               </Text>
               <Text style={styles.infoText}>
-                Яровая твердая
+                {store.lastCulture}
               </Text>
             </View>
             <View style={styles.infoBlock}>
               <Text style={styles.infoHeading}>
-                Сорт:
+                Тип почвы:
               </Text>
               <Text style={styles.infoText}>
-                Яровая твердая
+                {store.typeGround}
               </Text>
             </View>
             <View style={styles.infoBlock}>
               <Text style={styles.infoHeading}>
-                Сорт:
+                Процент содержания влаги в почве:
               </Text>
               <Text style={styles.infoText}>
-                Яровая твердая
+                {store.percentWater + ' %'}
               </Text>
             </View>
-
-
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Желаемый Ph:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.ph}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Концентрация фосфора:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.phosphor}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Концентрация азота:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.nitrogen}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Концентрация калия:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.potassium}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Средняя длина корней:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.rootDeep + ' см'}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Средняя толщина снежного покрова:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.snowDeep + ' см'}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Процент поражения болезнями:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.percentIil + ' %'}
+              </Text>
+            </View>
+            <View style={styles.infoBlock}>
+              <Text style={styles.infoHeading}>
+                Комментарий специалисту:
+              </Text>
+              <Text style={styles.infoText}>
+                {store.comment}
+              </Text>
+            </View>
           </View>
 
         </View>
@@ -145,15 +267,37 @@ const styles = StyleSheet.create({
   decisionWrap: {
     flex: 1,
     backgroundColor: '#459F40',
-    borderTopLeftRadius: 17,
-    borderTopRightRadius: 17,
-    paddingTop: 29
+    borderRadius: 17,
+    paddingTop: 10,
+    paddingBottom: 10,
+    maxWidth: '90%'
   },
   decisionTitle: {
     color: 'white',
     paddingHorizontal: 20,
     fontFamily: 'Inter-Bold',
-    fontSize: 35
+    fontSize: 35,
+    marginBottom: 10
+  },
+  descCard: {
+    marginHorizontal:10,
+    borderRadius: 17,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(0, 0, 0, 0.05)',
+    maxWidth: '95%',
+    marginBottom: 10
+  },
+  descCardTitle: {
+    paddingHorizontal: 20,
+    fontFamily: 'Inter-Bold',
+    fontSize: 16,
+    marginBottom: 8,
+    marginTop: 4
+  },
+  descDescription: {
+    paddingHorizontal: 20,
+    fontFamily: 'Inter-Regular',
+    marginBottom: 4
   },
 
   card: {
