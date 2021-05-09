@@ -36,7 +36,7 @@ export const SignUpForm = ({navigation}) => {
   }
 
   return(
-    <View style={styles.mainWrap}>
+    <View style={styles.formWrap}>
       <View style={styles.loginWrap}>
         <View>
           <Text style={styles.heading}>
@@ -90,15 +90,19 @@ export const SignUpForm = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  mainWrap: {
+  formWrap: {
+    flex: 1,
     height: '100%',
     width: '100%',
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-end',
+    position: 'absolute',
+    bottom: 0,
+    left: 0
   },
   loginWrap: {
-    height: '93%',
+    height: '70%',
     width: '100%',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
   buttonWrap: {
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    paddingTop: '18%',
+    paddingTop: '5%',
     alignItems: 'center'
   },
   registerText: {

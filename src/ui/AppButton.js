@@ -1,7 +1,7 @@
 import {Text, TouchableOpacity, View, StyleSheet, Keyboard} from "react-native";
 import React, {useEffect, useState} from "react";
 
-export const AppButton = ({text = 'Начать', onPress, disabled}) => {
+export const AppButton = ({text = 'Начать', onPress, disabled, style={}}) => {
   const disabledStyle = disabled ? {
     backgroundColor: 'rgba(0, 0, 0, 0.1)'
   } : {}
@@ -24,7 +24,7 @@ export const AppButton = ({text = 'Начать', onPress, disabled}) => {
        {keyboardStatus === 'Keyboard Shown' ?
            <></> :
            <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={onPress} disabled={disabled}>
-             <View style={{...styles.buttonStart, ...disabledStyle }}>
+             <View style={{...styles.buttonStart, ...disabledStyle, style }}>
                <Text style={styles.buttonText}>{text}</Text>
              </View>
            </TouchableOpacity>       }

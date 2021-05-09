@@ -1,9 +1,34 @@
-import React, {useState} from 'react';
-import {View, Text, SafeAreaView, StyleSheet, TextInput, TouchableOpacity, ToastAndroid, ActivityIndicator} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+    View,
+    Text,
+    SafeAreaView,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity,
+    ToastAndroid,
+    ActivityIndicator,
+    Keyboard
+} from 'react-native';
 import {AppButton} from "../ui/AppButton";
 import firebase from './Firebase'
+import * as PropTypes from "prop-types";
 
 export const SignInForm = ({navigation}) => {
+    useEffect(() => {
+        Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
+        Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
+
+        // cleanup function
+        return () => {
+            Keyboard.removeListener("keyboardDidShow", _keyboardDidShow);
+            Keyboard.removeListener("keyboardDidHide", _keyboardDidHide);
+        };
+    }, []);
+
+    const [keyboardStatus, setKeyboardStatus] = useState(undefined);
+    const _keyboardDidShow = () => setKeyboardStatus("Keyboard Shown");
+    const _keyboardDidHide = () => setKeyboardStatus("Keyboard Hidden");
     const [login, onChangeLogin] = React.useState(null);
     const [password, onChangePassword] = React.useState(null);
     const [loading, setLoading] = useState(false)
@@ -56,11 +81,20 @@ export const SignInForm = ({navigation}) => {
                     <Text style={styles.registerText}>
                         Нет аккаунта?
                     </Text>
-                    <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.navigate('SignUp')}>
-                        <Text style={styles.registerLink}>
-                            Зарегистрироваться
-                        </Text>
-                    </TouchableOpacity>
+                    { keyboardStatus === "Keyboard Shown" ?
+                        <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapperKey} onPress={() => navigation.navigate('SignUp')}>
+                            <Text style={styles.registerLink}>
+                                Зарегистрироваться
+                            </Text>
+                        </TouchableOpacity>
+                        :
+
+                        <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.navigate('SignUp')}>
+                            <Text style={styles.registerLink}>
+                                Зарегистрироваться
+                            </Text>
+                        </TouchableOpacity>
+                    }
                 </View>
             </View>
         </View>)
@@ -115,7 +149,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         position: 'relative',
-        top: '22%'
+        top: '5%'
     },
     registerText: {
         fontFamily: 'Inter-Regular',

@@ -6,7 +6,20 @@ import {AppButton} from "../ui/AppButton";
 import {useSelector} from "react-redux";
 
 export const DetailScreen = ({navigation}) => {
-  const [done, setDone] = useState(false)
+  const [done, setDone] = useState(false);
+  const [timer, setTimer] = useState(86400000);
+  const [timerStr, setTimerStr] = useState('00:00:00')
+
+  const timerFunc = setInterval(() => {
+    let newTimer = timer;
+    newTimer--;
+    setTimer(newTimer)
+  })
+
+  if (done || timer === 0) {
+    setTimer(0);
+    clearInterval(timerFunc)
+  }
 
 
   return (
@@ -29,7 +42,17 @@ export const DetailScreen = ({navigation}) => {
               ? <ScrollView style={styles.decisionWrap}>
                 <Text style={styles.decisionTitle}>Рекомендации</Text>
               </ScrollView>
-              : null
+              : timer ?
+              <View style={{
+                width: '100%',
+                paddingHorizontal: 20
+              }}>
+                <View style={styles.timerWrap}>
+                  <Text style={styles.timerText}>Специалист должен ответить в течении</Text>
+                  <Text style={styles.timerText}>24 часов</Text>
+                </View>
+              </View>
+              : <></>
         }
         <View style={styles.infoWrap}>
           <View style={styles.card}>
@@ -54,56 +77,6 @@ export const DetailScreen = ({navigation}) => {
                 Пшеница
               </Text>
             </View>
-            <View style={styles.infoBlock}>
-              <Text style={styles.infoHeading}>
-                Сорт:
-              </Text>
-              <Text style={styles.infoText}>
-                Яровая твердая
-              </Text>
-            </View>
-            <View style={styles.infoBlock}>
-              <Text style={styles.infoHeading}>
-                Сорт:
-              </Text>
-              <Text style={styles.infoText}>
-                Яровая твердая
-              </Text>
-            </View>
-            <View style={styles.infoBlock}>
-              <Text style={styles.infoHeading}>
-                Сорт:
-              </Text>
-              <Text style={styles.infoText}>
-                Яровая твердая
-              </Text>
-            </View>
-            <View style={styles.infoBlock}>
-              <Text style={styles.infoHeading}>
-                Сорт:
-              </Text>
-              <Text style={styles.infoText}>
-                Яровая твердая
-              </Text>
-            </View>
-            <View style={styles.infoBlock}>
-              <Text style={styles.infoHeading}>
-                Сорт:
-              </Text>
-              <Text style={styles.infoText}>
-                Яровая твердая
-              </Text>
-            </View>
-            <View style={styles.infoBlock}>
-              <Text style={styles.infoHeading}>
-                Сорт:
-              </Text>
-              <Text style={styles.infoText}>
-                Яровая твердая
-              </Text>
-            </View>
-
-
           </View>
 
         </View>
@@ -196,7 +169,7 @@ const styles = StyleSheet.create({
     width: '100%',
     fontFamily: 'Inter-Light',
     fontSize: 16,
-    color: '#919191'
+    color: '#919191',
   },
   infoWrap: {
     paddingHorizontal: 20
@@ -238,4 +211,16 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     paddingHorizontal: 20,
   },
+  timerWrap: {
+    width: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 10
+
+  },
+  timerText: {
+    fontFamily: 'Inter-Light',
+    fontSize: 16
+  }
 })
