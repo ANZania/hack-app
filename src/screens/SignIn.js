@@ -2,17 +2,25 @@ import React, {useState} from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Logo } from '../components/Logo';
 import {SignInForm} from "../components/SignInForm";
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scrollview'
 
 
 export const SignIn = ({navigation}) => {
   const [reg, setReg] = useState(true)
     return (
-        <View style={styles.mainWrap}>
-            <View style={styles.logoWrap}>
-                <Logo />
+        <KeyboardAwareScrollView contentContainerStyle={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+        }}>
+            <View style={styles.mainWrap}>
+                <View style={styles.logoWrap}>
+                    <Logo />
+                </View>
+                <SignInForm navigation={navigation}/>
             </View>
-          <SignInForm navigation={navigation}/>
-        </View>
+        </KeyboardAwareScrollView>
     )
 }
 

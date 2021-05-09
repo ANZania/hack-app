@@ -1,20 +1,57 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     View,
-    StyleSheet,
+    StyleSheet, Text, TouchableOpacity,
 } from "react-native";
 import {AppButton} from "../ui/AppButton";
 import PolygonCreator from "../components/PoligonCreator";
+import {BigTitle} from "../ui/BigTitle";
+import * as Location from 'expo-location';
 
 export const MapChoice = ({navigation}) => {
+    const [popup, setPopup] = useState(true);
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+
+            let location = await Location.getCurrentPositionAsync({});
+            setLocation(location);
+        })();
+    }, []);
 
     return (
         <View style={styles.container}>
-            <PolygonCreator/>
+            <PolygonCreator coords={location.coords}/>
             {/*<View style={styles.buttonWrap}>*/}
             {/*    <AppButton text='Продолжить' onPress={() => navigation.navigate('CultureSelect')} />*/}
             {/*</View>*/}
-
+            {popup &&
+                <View style={styles.popup}>
+                    <BigTitle text={'Функция в разработке'}/>
+                    <Text style={styles.popupDescr}>
+                        Данная функция находится в разработке и может работать некорректно. 😞
+                    </Text>
+                    <View style={styles.buttonWrap}>
+                        <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => navigation.goBack()}>
+                            <Text style={styles.registerLink}>
+                                Назад
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={() => setPopup(false)}>
+                            <Text style={styles.registerLink}>
+                                Продолжить
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            }
         </View>
     )
 }
@@ -24,14 +61,40 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         paddingTop: '10%',
-        backgroundColor: 'white'
+    },
+    popup: {
+        position: 'absolute',
+        height: '40%',
+        top: '5%',
+        width: '90%',
+        left: '5%',
+        borderRadius: 17,
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        paddingVertical: 10,
+        paddingHorizontal: 20
+    },
+    popupDescr: {
+        fontFamily: 'Inter-Regular',
+        fontSize: 16
     },
     buttonWrap: {
-        position: 'absolute',
         width: '100%',
-        paddingHorizontal: 20,
+        height: 60,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginVertical: 10,
+        position: 'absolute',
         bottom: 10,
-        zIndex: 10,
-        alignSelf: 'center',
+        left: 20
     },
+    buttonWrapper: {
+        height: 50,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        borderRadius: 12,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '49%'
+    }
 })

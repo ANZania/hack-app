@@ -179,9 +179,9 @@ class PoligonCreator extends Component {
                 </View>
                 <TouchableOpacity
                     onPress={() => this.clear()}
-                    style={[styles.bubble, styles.button]}
+                    style={[styles.bubble, styles.button, styles.buttonClear]}
                 >
-                    <Text>Clear</Text>
+                    <Text>Очистить</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -233,6 +233,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: 'transparent',
     },
+    buttonClear: {
+        marginBottom: 10
+    }
 });
 
 export default PoligonCreator
