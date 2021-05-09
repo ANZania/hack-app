@@ -1,19 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, StyleSheet, StatusBar, Image} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
+import {useDispatch, useSelector} from "react-redux";
+import {choosePh} from "../store/actions/fieldsInfo";
 
 export const CultureInfoScreen = ({navigation}) => {
+  const [ph, setPh] = useState('')
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.container}>
       <BigTitle text='Введите информацию о культуре' />
         <Image source={require('../../assets/img/agro9.png')} style={styles.promo} />
         <View style={styles.card}>
-            <StrainInput label='Наиболее приятный Ph для вашей культуры' placeholder='Впишите числовое значение' />
+            <StrainInput
+              label='Наиболее приятный Ph для вашей культуры'
+              placeholder='Впишите числовое значение'
+              typeKeyBoard='numeric'
+              value={ph}
+              onInputTextChange={text => setPh(text)}
+            />
         </View>
         <View style={styles.buttonWrap}>
-            <AppButton text={'Далее'} onPress={() => navigation.navigate('Climate')}/>
+            <AppButton
+              text={'Далее'}
+              onPress={() => {
+                dispatch(choosePh(ph))
+                navigation.navigate('Climate')
+              }}
+              disabled={!ph}
+            />
         </View>
     </View>
   )

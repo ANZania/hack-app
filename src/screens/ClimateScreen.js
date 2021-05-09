@@ -1,35 +1,55 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, ScrollView, StyleSheet, StatusBar, Text, Image} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppGroupInputDateWithNumber} from "../components/AppGroupInputDateWithNumber";
 import {AppButton} from "../ui/AppButton";
 import {DateInput} from "../components/DateInput";
+import {useDispatch, useSelector} from "react-redux";
+import {chooseSnowDeep, chooseWeekTemp} from "../store/actions/fieldsInfo";
 
 export const ClimateScreen = ({navigation}) => {
+  const [snowDeep, setSnowDeep] = useState('')
+  const [weekTemp, setMainObj] = useState({})
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.wrap}>
         <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
             <BigTitle text='Введите информацию о особенностях климата' />
             <Image source={require('../../assets/img/agro3.png')} style={styles.promo} />
             <View style={styles.card}>
-                <StrainInput label='Средняя толщина снежного покрова (в см)' placeholder='Впишите числовое значение' />
+                <StrainInput
+                  label='Средняя толщина снежного покрова (в см)'
+                  placeholder='Впишите числовое значение'
+                  value={snowDeep}
+                  typeKeyBoard='numeric'
+                  onInputTextChange={text => setSnowDeep(text)}
+                />
             </View>
             <View style={styles.card}>
                 <Text style={styles.label}>Выберите даты и укажите температуру в течении недели</Text>
                 <View style={styles.tempWrap}>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
-                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
+                    <AppGroupInputDateWithNumber placeholder={'Температура, ℃'} setMainObj={setMainObj}/>
                 </View>
             </View>
 
             <View style={styles.buttonWrap}>
-                <AppButton text={'Далее'} onPress={() => navigation.navigate('Yield')}/>
+                <AppButton
+                  text={'Далее'}
+                  onPress={() => {
+                    dispatch(chooseSnowDeep(snowDeep))
+                    dispatch(chooseWeekTemp(weekTemp))
+                    navigation.navigate('Yield')
+                  }}
+                  disabled={!(!!snowDeep && Object.keys(weekTemp).length >= 7)}
+                />
             </View>
         </ScrollView>
     </View>
