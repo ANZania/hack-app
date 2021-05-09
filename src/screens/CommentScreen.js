@@ -1,24 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, StyleSheet, Image, ScrollView} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import CultureSelector from "../components/CultureSelector";
 import {AppButton} from "../ui/AppButton";
 import MultilineStrainInput from "../components/MultilineStrainInput";
-
-const options = ["Г/м^2", "Кг/Га", "Т/Га", "Г/м^3"];
+import {useDispatch} from "react-redux";
+import {chooseComment} from "../store/actions/fieldsInfo";
 
 export const CommentScreen = ({navigation}) => {
+  const [comment, setComment] = useState('No Comment')
+  const dispatch = useDispatch()
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollContainer} contentContainerStyle={{ alignItems: 'center' }}>
                 <BigTitle text='Всё почти готово!' />
                 <Image source={require('../../assets/img/agro1.png')} style={styles.promo} />
                 <View style={styles.card}>
-                    <MultilineStrainInput label='Введите комментаий для специалиста:' placeholder='Введите текст' />
+                    <MultilineStrainInput label='Введите комментаий для специалиста:' placeholder='Введите текст' onInputTextChange={setComment} value={comment} />
                 </View>
                 <View style={styles.buttonWrap}>
-                    <AppButton text={'Завершить'} onPress={() => navigation.navigate('Detail')}/>
+                    <AppButton text={'Завершить'} onPress={() => {
+                      dispatch(chooseComment(comment))
+                      navigation.navigate('Detail')
+                    }}/>
                 </View>
             </ScrollView>
 

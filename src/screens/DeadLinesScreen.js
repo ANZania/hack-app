@@ -18,9 +18,16 @@ export const DeadLinesScreen = ({navigation}) => {
           <BigTitle text='Введите информацию об сроках наступления основных фенологических стадий развития культуры' />
 
             <Image source={require('../../assets/img/agro9.png')} style={styles.promo} />
-          <MultilineStrainInput isLabel={false} placeholder='Впишите информацию' maxHeight={240}/>
+          <MultilineStrainInput isLabel={false} placeholder='Впишите информацию' maxHeight={240} onInputTextChange={setDeadlines} value={deadlines}/>
             <View style={styles.buttonWrap}>
-                <AppButton text={'Далее'} onPress={() => navigation.navigate('Health')}/>
+                <AppButton
+                  text={'Далее'}
+                  onPress={() => {
+                    dispatch(chooseDeadlines(deadlines))
+                    navigation.navigate('Health')
+                  }}
+                  disabled={!deadlines}
+                />
             </View>
     </View>
   )
