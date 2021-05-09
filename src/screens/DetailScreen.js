@@ -3,6 +3,7 @@ import {View, StyleSheet, StatusBar, Text, ScrollView} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import { Ionicons } from '@expo/vector-icons';
 import {AppButton} from "../ui/AppButton";
+import {useSelector} from "react-redux";
 
 export const DetailScreen = ({navigation}) => {
   const [done, setDone] = useState(false)

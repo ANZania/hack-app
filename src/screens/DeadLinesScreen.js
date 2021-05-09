@@ -1,11 +1,18 @@
-import React from "react";
+
+import React, {useState} from "react";
 import {View, StyleSheet, Image, ScrollView} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
+import {useDispatch, useSelector} from "react-redux";
 import MultilineStrainInput from "../components/MultilineStrainInput";
+import {chooseDeadlines} from "../store/actions/fieldsInfo";
+
 
 export const DeadLinesScreen = ({navigation}) => {
+  const [deadlines, setDeadlines] = useState('')
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.container}>
           <BigTitle text='Введите информацию об сроках наступления основных фенологических стадий развития культуры' />

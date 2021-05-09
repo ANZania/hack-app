@@ -1,12 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import {TextInput, View, StyleSheet} from 'react-native'
 import {DateInput} from "./DateInput";
 
-export const AppGroupInputDateWithNumber = ({placeholder}) => {
+export const AppGroupInputDateWithNumber = ({placeholder, setMainObj}) => {
+  const [date, setDate] = useState('')
+  const [tempFromDate, setTempFromDate] = useState('')
+
+  const dateHandler = () => {
+    setMainObj(prevState => ({
+      ...prevState,
+      [date]: tempFromDate
+    }))
+  }
+
+  const tempHandler = () => {
+    setMainObj(prevState => ({
+      ...prevState,
+      [date]: tempFromDate
+    }))
+  }
+
   return (
     <View style={styles.inputGroup}>
-      <DateInput style={{minWidth: '45%', marginRight: 2}} />
-      <TextInput style={styles.input} placeholder={placeholder} />
+      <DateInput style={{minWidth: '45%', marginRight: 2}} onDateChange={(data) => {
+        setDate(data)
+        dateHandler()
+      }} />
+      <TextInput keyboardType='numeric' style={styles.input} placeholder={placeholder} value={tempFromDate} onChangeText={(text) => {
+        setTempFromDate(text)
+        tempHandler()
+      }} />
     </View>
   )
 }

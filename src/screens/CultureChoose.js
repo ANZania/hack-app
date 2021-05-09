@@ -6,6 +6,14 @@ import CultureSelector from "../components/CultureSelector";
 import StrainInput from "../components/StrainInput";
 import {DateInput} from "../components/DateInput";
 import {AppButton} from "../ui/AppButton";
+import {useDispatch} from "react-redux";
+import {
+  chooseCulture,
+  chooseHarvestDate,
+  chooseLastCulture,
+  chooseSeedDate,
+  chooseStrain
+} from "../store/actions/fieldsInfo";
 
 const options = ["Пшеница", "Рожь", "Пшено"];
 
@@ -51,12 +59,15 @@ export const CultureChoose = ({navigation}) => {
     const [seedDate, setSeedDate] = React.useState('')
     const [harvestDate, setHarvestDate] = React.useState('')
 
+    const dispatch = useDispatch()
+
     function handleSeedDateSet(date) {
-      setSeedDate(_ => date);
+      setSeedDate(date);
     }
     function handleHarvestDateSet(date) {
-      setHarvestDate(_ => date);
+      setHarvestDate(date);
     }
+
     return (
       <View style={styles.containerWrap}>
         <ScrollView style={styles.container} contentContainerStyle={{ alignItems: 'center' }}>
@@ -68,19 +79,25 @@ export const CultureChoose = ({navigation}) => {
                 placeholder={'Выберите вариант или впишите свой'}
                 label={'Выращиваемая культура:'}
                 value={culture}
-                onSelectOptionChange={option => setCulture(option)}
+                onSelectOptionChange={option => {
+                  setCulture(option)
+                }}
             />
           </View>
 
           <View style={styles.card}>
             <StrainInput placeholder={'Название сорта:'} label='Введите название сорта:' value={strain}
-                onInputTextChange={setStrain}/>
+                onInputTextChange={(text) => {
+                  setStrain(text)
+                }}/>
             <CultureSelector
                 options={options}
                 placeholder={'Выберите вариант или впишите свой'}
                 label={'Предыдущая культура:'}
                 value={lastCulture}
-                onSelectOptionChange={option => setLastCulture(option)}
+                onSelectOptionChange={option => {
+                  setLastCulture(option)
+                }}
             />
           </View>
 
@@ -101,7 +118,14 @@ export const CultureChoose = ({navigation}) => {
           {/*  {harvestDate+" "}*/}
           {/*</StateInfo>*/}
           <View style={styles.buttonWrap}>
-            <AppButton text={'Далее'} onPress={() => navigation.navigate('Ground')}/>
+            <AppButton text={'Далее'} onPress={() => {
+              dispatch(chooseCulture(culture))
+              dispatch(chooseStrain(strain))
+              dispatch(chooseLastCulture(lastCulture))
+              dispatch(chooseSeedDate(seedDate))
+              dispatch(chooseHarvestDate(harvestDate))
+              navigation.navigate('Ground')
+            }} disabled={!(!!culture && !!strain && !!lastCulture && !!seedDate && !!harvestDate)}/>
           </View>
         </ScrollView>
       </View>

@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 export const DateInput = ({title, style, onDateChange}) => {
-    const [date, setDate] = useState(new Date(1598051730000));
+    const [date, setDate] = useState(new Date());
     const [dateForText, setDateForText] = useState([]);
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
@@ -13,7 +13,7 @@ export const DateInput = ({title, style, onDateChange}) => {
 
     const normalizeData = (date) => {
         const day = addZero(date.getDate())
-        const month = addZero(date.getMonth())
+        const month = addZero(date.getMonth() + 1)
         const year = date.getFullYear().toString()
         return [day, month, year]
     }
@@ -24,8 +24,7 @@ export const DateInput = ({title, style, onDateChange}) => {
         setDateForText(dateText)
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
-        //хз как работать будет
-        onDateChange(dateForText)
+        onDateChange(`${dateText[0]}.${dateText[1]}.${dateText[2]}`)
     };
 
     // useEffect(() => {
