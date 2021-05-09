@@ -1,8 +1,12 @@
 {
   "expo": {
-    "name": "hack-app",
+    "name": "Hack Argo",
     "slug": "hack-app",
     "version": "1.0.0",
+    "platforms": [
+      "android",
+      "ios"
+    ] ,
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,16 +21,18 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.iwan-maks-dev.hack-app",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      },
+      "package": "com.iwan_maks_dev.hack_app",
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
