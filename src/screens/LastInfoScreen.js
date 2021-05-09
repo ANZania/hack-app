@@ -6,6 +6,7 @@ import CultureSelector from "../components/CultureSelector";
 import {AppButton} from "../ui/AppButton";
 import {useDispatch, useSelector} from "react-redux";
 import {chooseAvgPlantGrow, chooseProjectPok, chooseUnit} from "../store/actions/fieldsInfo";
+import Toast from "react-native-root-toast";
 
 const options = ["Г/м^2", "Кг/Га", "Т/Га", "Г/м^3"];
 
@@ -35,7 +36,15 @@ export const LastInfoScreen = ({navigation}) => {
                   placeholder='Впишите числовое значение'
                   value={projectPok}
                   typeKeyBoard='numeric'
-                  onInputTextChange={setProjectPok}
+                  onInputTextChange={(text) => {
+                    if (text > 100 || text < 0) {
+                      let toast = Toast.show('Укажите корректное значение процента', {
+                        duration: Toast.durations.SHORT,
+                      });
+                    } else {
+                      setProjectPok(text)
+                    }
+                  }}
                 />
             </View>
             <View style={styles.card}>

@@ -22,6 +22,7 @@ import {SignUp} from "./src/screens/SignUpScreen";
 import {CommentScreen} from "./src/screens/CommentScreen";
 import {Provider} from "react-redux";
 import {store} from "./src/store";
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -44,28 +45,30 @@ export default function App() {
   const Stack = createStackNavigator();
 
   return (
-    <Provider store={store}>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
-        <Stack.Screen name="LotList" component={LotList} options={{headerShown: false}}/>
-        <Stack.Screen name="LotChoice" component={LotChoice} options={{headerShown: false}}/>
-        <Stack.Screen name="MapChoice" component={MapChoice} options={{headerShown: false}}/>
-        <Stack.Screen name="Map" component={MapScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Ground" component={GroundInfoScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
-        <Stack.Screen name="CultureInfo" component={CultureInfoScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Climate" component={ClimateScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Yield" component={YieldScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Deadlines" component={DeadLinesScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Health" component={HealthGroundScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Last" component={LastInfoScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Comment" component={CommentScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-    </Provider>
+    <RootSiblingParent>
+      <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
+          <Stack.Screen name="LotList" component={LotList} options={{headerShown: false}}/>
+          <Stack.Screen name="LotChoice" component={LotChoice} options={{headerShown: false}}/>
+          <Stack.Screen name="MapChoice" component={MapChoice} options={{headerShown: false}}/>
+          <Stack.Screen name="Map" component={MapScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Ground" component={GroundInfoScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="CultureSelect" component={CultureChoose} options={{headerShown: false}}/>
+          <Stack.Screen name="CultureInfo" component={CultureInfoScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Climate" component={ClimateScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Yield" component={YieldScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Deadlines" component={DeadLinesScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Health" component={HealthGroundScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Last" component={LastInfoScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Comment" component={CommentScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+      </Provider>
+    </RootSiblingParent>
   );
 }

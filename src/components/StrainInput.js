@@ -38,7 +38,8 @@ export default function StrainInput({
                                         isLabel = true,
                                         label = "Введите название сорта",
                                         isNested = false,
-                                        typeKeyBoard = 'default'
+                                        typeKeyBoard = 'default',
+                                        maxLength=1000
 }) {
     // const [value, onChangeText] = React.useState('');
     return (
@@ -49,6 +50,7 @@ export default function StrainInput({
                 value={value} 
                 onChangeText={onInputTextChange}
                 keyboardType={typeKeyBoard}
+                maxLength={maxLength}
             />
         </View>
 
