@@ -1,42 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react'
 import {
     StyleSheet,
     View,
     Text,
     Dimensions,
-    TouchableOpacity,
-} from 'react-native';
+    TouchableOpacity
+} from 'react-native'
 
 import MapView, {
     MAP_TYPES,
     Polygon,
     ProviderPropType,
-} from 'react-native-maps';
+    PROVIDER_GOOGLE
+} from 'react-native-maps'
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
-const ASPECT_RATIO = width / height;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-let id = 0;
+const ASPECT_RATIO = width / height
+const LATITUDE = 37.78825
+const LONGITUDE = -122.4324
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
+let id = 0
 
-class PolygonCreator extends React.Component {
+class PoligonCreator extends Component {
     constructor(props) {
-        super(props);
-
+        super(props)
         this.state = {
             region: {
                 latitude: LATITUDE,
                 longitude: LONGITUDE,
                 latitudeDelta: LATITUDE_DELTA,
-                longitudeDelta: LONGITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA
             },
             polygons: [],
             editing: null,
-            creatingHole: false,
-        };
+            creatingHole: false
+        }
     }
 
     finish() {
@@ -48,79 +48,87 @@ class PolygonCreator extends React.Component {
         });
     }
 
+    clear = () => {
+        this.setState({
+            polygons: [],
+            editing: null,
+            creatingHole: false
+        })
+    }
+
     createHole() {
-        const { editing, creatingHole } = this.state;
+        const { editing, creatingHole } = this.state
         if (!creatingHole) {
             this.setState({
                 creatingHole: true,
                 editing: {
                     ...editing,
-                    holes: [...editing.holes, []],
-                },
-            });
+                    holes: [...editing.holes, []]
+                }
+            })
         } else {
-            const holes = [...editing.holes];
+            const holes = [...editing.holes]
             if (holes[holes.length - 1].length === 0) {
-                holes.pop();
+                holes.pop()
                 this.setState({
                     editing: {
                         ...editing,
-                        holes,
-                    },
-                });
+                        holes
+                    }
+                })
             }
-            this.setState({ creatingHole: false });
+            this.setState({ creatingHole: false })
         }
     }
 
     onPress(e) {
-        const { editing, creatingHole } = this.state;
+        const { editing, creatingHole } = this.state
         if (!editing) {
             this.setState({
                 editing: {
                     id: id++,
                     coordinates: [e.nativeEvent.coordinate],
-                    holes: [],
-                },
-            });
+                    holes: []
+                }
+            })
         } else if (!creatingHole) {
             this.setState({
                 editing: {
                     ...editing,
-                    coordinates: [...editing.coordinates, e.nativeEvent.coordinate],
-                },
-            });
+                    coordinates: [...editing.coordinates, e.nativeEvent.coordinate]
+                }
+            })
         } else {
-            const holes = [...editing.holes];
+            const holes = [...editing.holes]
             holes[holes.length - 1] = [
                 ...holes[holes.length - 1],
-                e.nativeEvent.coordinate,
-            ];
+                e.nativeEvent.coordinate
+            ]
             this.setState({
                 editing: {
                     ...editing,
                     id: id++, // keep incrementing id to trigger display refresh
                     coordinates: [...editing.coordinates],
-                    holes,
-                },
-            });
+                    holes
+                }
+            })
         }
     }
 
     render() {
         const mapOptions = {
-            scrollEnabled: true,
-        };
+            scrollEnabled: true
+        }
 
         if (this.state.editing) {
-            mapOptions.scrollEnabled = false;
-            mapOptions.onPanDrag = e => this.onPress(e);
+            mapOptions.scrollEnabled = false
+            mapOptions.onPanDrag = e => this.onPress(e)
         }
 
         return (
             <View style={styles.container}>
                 <MapView
-                    provider={this.props.provider}
+                    provider={PROVIDER_GOOGLE}
                     style={styles.map}
                     mapType={MAP_TYPES.SATELLITE}
                     initialRegion={this.state.region}
@@ -148,14 +156,15 @@ class PolygonCreator extends React.Component {
                         />
                     )}
                 </MapView>
+
                 <View style={styles.buttonContainer}>
                     {this.state.editing && (
                         <TouchableOpacity
                             onPress={() => this.createHole()}
                             style={[styles.bubble, styles.button]}
                         >
-                            <Text style={styles.buttonText}>
-                                {this.state.creatingHole ? 'Сбросить' : 'Создать границы'}
+                            <Text>
+                                {this.state.creatingHole ? 'Завершить' : 'Создать'}
                             </Text>
                         </TouchableOpacity>
                     )}
@@ -164,18 +173,24 @@ class PolygonCreator extends React.Component {
                             onPress={() => this.finish()}
                             style={[styles.bubble, styles.button]}
                         >
-                            <Text style={styles.buttonText}>Далее</Text>
+                            <Text>Finish</Text>
                         </TouchableOpacity>
                     )}
                 </View>
+                <TouchableOpacity
+                    onPress={() => this.clear()}
+                    style={[styles.bubble, styles.button]}
+                >
+                    <Text>Clear</Text>
+                </TouchableOpacity>
             </View>
-        );
+        )
     }
 }
 
-PolygonCreator.propTypes = {
-    provider: ProviderPropType,
-};
+PoligonCreator.propTypes = {
+    provider: ProviderPropType
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -220,4 +235,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PolygonCreator;
+export default PoligonCreator
