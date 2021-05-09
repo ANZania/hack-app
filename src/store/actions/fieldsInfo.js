@@ -140,9 +140,17 @@ export const chooseProjectPok = date => {
     payload: date
   }
 }
+
 export const chooseUnit = date => {
   return {
     type: 'unit/unitAdded',
+    payload: date
+  }
+}
+
+export const chooseComment = date => {
+  return {
+    type: 'comment/commentAdded',
     payload: date
   }
 }

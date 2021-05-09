@@ -20,7 +20,8 @@ const initialState = {
   badPlants: '',
   avgPlantGrow: '',
   projectPok: '',
-  unit: ''
+  unit: '',
+  comment: '',
 }
 
 export const groundReducer = (state = initialState, action) => {
@@ -134,6 +135,11 @@ export const groundReducer = (state = initialState, action) => {
       return {
         ...state,
         unit: action.payload
+      }
+    case 'comment/commentAdded':
+      return {
+        ...state,
+        comment: action.payload
       }
     default:
       return state
