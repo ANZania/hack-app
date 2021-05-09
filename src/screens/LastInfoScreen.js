@@ -26,9 +26,8 @@ export const LastInfoScreen = ({navigation}) => {
                     label='Выберите единицу измерения фитомассы'
                 />
             </View>
-
             <View style={styles.buttonWrap}>
-                <AppButton text={'Далее'} onPress={() => navigation.navigate('Detail')}/>
+                <AppButton text={'Далее'} onPress={() => navigation.navigate('Comment')}/>
             </View>
         </ScrollView>
 

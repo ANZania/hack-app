@@ -19,6 +19,7 @@ import {HealthGroundScreen} from "./src/screens/HealthGroundScreen";
 import {LastInfoScreen} from "./src/screens/LastInfoScreen";
 import {DetailScreen} from "./src/screens/DetailScreen";
 import {SignUp} from "./src/screens/SignUpScreen";
+import {CommentScreen} from "./src/screens/CommentScreen";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -57,6 +58,7 @@ export default function App() {
         <Stack.Screen name="Deadlines" component={DeadLinesScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Health" component={HealthGroundScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Last" component={LastInfoScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Comment" component={CommentScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Detail" component={DetailScreen} options={{headerShown: false}}/>
         <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
       </Stack.Navigator>
