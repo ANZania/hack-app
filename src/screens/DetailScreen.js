@@ -6,61 +6,50 @@ import {AppButton} from "../ui/AppButton";
 import {useSelector} from "react-redux";
 
 export const DetailScreen = ({navigation}) => {
-  const [done, setDone] = useState(false);
-  const [timer, setTimer] = useState(86400000);
-  const [timerStr, setTimerStr] = useState('00:00:00')
+  const [done, setDone] = useState(true);
   let store = useSelector(state => state.info)
-  store = {
-        "avgPlantGrow": "20",
-        "badPlants": "25",
-        "culture": "Рожь",
-        "comment": "Сделайте красиво",
-        "deadlines": "Я не знаю что это",
-        "harvestDate": "13.08.2020",
-        "lastCulture": "Кукуруза",
-        "nitrogen": "45",
-        "percentIil": "20",
-        "percentWater": "38",
-        "ph": "29",
-        "phosphor": "282",
-        "potassium": "2882",
-        "projectPok": "38",
-        "rootDeep": "33",
-        "seedDate": "03.05.2020",
-        "snowDeep": "29",
-        "strain": "Яровая",
-        "temp": "20",
-        "typeGround": "Чернозём",
-        "unit": "Т/Га",
-        "weekTemp": {
-            "25.05.2021": "2",
-            "26.05.2021": "3",
-            "27.05.2021": "3",
-            "28.05.2021": "2",
-            "29.05.2021": "3",
-            "30.05.2021": "3",
-            "31.05.2021": "4",
-        },
-        "yield":  {
-          "": "",
-            "03.05.2021": "",
-            "04.05.2021": "3",
-            "05.05.2021": "5",
-            "06.05.2021": "4",
-            "08.05.2021": "",
-        }
-    }
+  // store = {
+  //       "avgPlantGrow": "20",
+  //       "badPlants": "25",
+  //       "culture": "Рожь",
+  //       "comment": "Сделайте красиво",
+  //       "deadlines": "Я не знаю что это",
+  //       "harvestDate": "13.08.2020",
+  //       "lastCulture": "Кукуруза",
+  //       "nitrogen": "45",
+  //       "percentIil": "20",
+  //       "percentWater": "38",
+  //       "ph": "29",
+  //       "phosphor": "282",
+  //       "potassium": "2882",
+  //       "projectPok": "38",
+  //       "rootDeep": "33",
+  //       "seedDate": "03.05.2020",
+  //       "snowDeep": "29",
+  //       "strain": "Яровая",
+  //       "temp": "20",
+  //       "typeGround": "Чернозём",
+  //       "unit": "Т/Га",
+  //       "weekTemp": {
+  //           "25.05.2021": "2",
+  //           "26.05.2021": "3",
+  //           "27.05.2021": "3",
+  //           "28.05.2021": "2",
+  //           "29.05.2021": "3",
+  //           "30.05.2021": "3",
+  //           "31.05.2021": "4",
+  //       },
+  //       "yield":  {
+  //         "": "",
+  //           "03.05.2021": "",
+  //           "04.05.2021": "3",
+  //           "05.05.2021": "5",
+  //           "06.05.2021": "4",
+  //           "08.05.2021": "",
+  //       }
+  //   }
 
-  const timerFunc = setInterval(() => {
-    let newTimer = timer;
-    newTimer--;
-    setTimer(newTimer)
-  })
 
-  if (done || timer === 0) {
-    setTimer(0);
-    clearInterval(timerFunc)
-  }
 
   return (
     <View style={styles.container}>
@@ -101,7 +90,7 @@ export const DetailScreen = ({navigation}) => {
                     </Text>
                   </View>
               </ScrollView>
-              : timer ?
+              :
               <View style={{
                 width: '100%',
                 paddingHorizontal: 20
@@ -111,9 +100,6 @@ export const DetailScreen = ({navigation}) => {
                   <Text style={styles.timerText}>24 часов</Text>
                 </View>
               </View>
-              : <></>                 
-                </ScrollView>
-              : null
 
         }
         <View style={styles.infoWrap}>
@@ -247,7 +233,7 @@ export const DetailScreen = ({navigation}) => {
               <Text style={styles.infoHeading}>
                 Комментарий специалисту:
               </Text>
-              <Text style={styles.infoText}>
+              <Text style={styles.infoText} numberofLines={10}>
                 {store.comment}
               </Text>
             </View>
@@ -362,7 +348,7 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   infoText: {
-    width: '100%',
+    maxWidth: '100%',
     fontFamily: 'Inter-Light',
     fontSize: 16,
     color: '#919191',

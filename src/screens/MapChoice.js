@@ -10,25 +10,11 @@ import * as Location from 'expo-location';
 
 export const MapChoice = ({navigation}) => {
     const [popup, setPopup] = useState(true);
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
 
-    useEffect(() => {
-        (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
-                return;
-            }
-
-            let location = await Location.getCurrentPositionAsync({});
-            setLocation(location);
-        })();
-    }, []);
 
     return (
         <View style={styles.container}>
-            <PolygonCreator coords={location.coords}/>
+            <PolygonCreator/>
             {/*<View style={styles.buttonWrap}>*/}
             {/*    <AppButton text='Продолжить' onPress={() => navigation.navigate('CultureSelect')} />*/}
             {/*</View>*/}
