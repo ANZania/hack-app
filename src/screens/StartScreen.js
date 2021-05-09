@@ -18,7 +18,7 @@ export const StartScreen = ({navigation}) => {
         <Text style={styles.description}>
           Наш сервис позволяет получить комментарии специалиста о состоянии ваших
         </Text>
-        <AppButton text='Начать' onPress={() => navigation.navigate('SignIn')}/>
+        <AppButton text='Начать' onPress={() => navigation.navigate('CultureSelect')}/>
       </View>
     </View>
   )

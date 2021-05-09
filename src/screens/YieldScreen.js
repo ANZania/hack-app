@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, StyleSheet, StatusBar, Text, Image, ScrollView} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import {AppGroupInputDateWithNumber} from "../components/AppGroupInputDateWithNumber";
 import {AppButton} from "../ui/AppButton";
+import {useDispatch, useSelector} from "react-redux";
+import {chooseYield} from "../store/actions/fieldsInfo";
 
 export const YieldScreen = ({navigation}) => {
+  const [appYield, setYield] = useState({})
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer} contentContainerStyle={{ alignItems: 'center' }}>
@@ -13,16 +18,23 @@ export const YieldScreen = ({navigation}) => {
         <View style={styles.card}>
           <Text style={styles.label}>Выберите даты и укажите урожайность предыдущих 5 лет на участке (в т/га)</Text>
           <View style={styles.tempWrap}>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
           </View>
         </View>
 
         <View style={styles.buttonWrap}>
-          <AppButton text={'Далее'} onPress={() => navigation.navigate('Deadlines')}/>
+          <AppButton
+            text={'Далее'}
+            onPress={() => {
+              dispatch(chooseYield(appYield))
+              navigation.navigate('Deadlines')
+            }}
+            disabled={!(Object.keys(appYield).length >= 5)}
+          />
         </View>
 
       </ScrollView>

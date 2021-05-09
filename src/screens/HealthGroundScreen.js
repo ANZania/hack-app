@@ -1,24 +1,50 @@
-import React from "react";
+import React, {useState} from "react";
 import {View, StyleSheet, Image} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
 import {DateInput} from "../components/DateInput";
+import {useDispatch, useSelector} from "react-redux";
+import {choosePercentBadPlants, choosePercentIil} from "../store/actions/fieldsInfo";
 
 export const HealthGroundScreen = ({navigation}) => {
+  const [percentIil, setPercentIil] = useState('')
+  const [percentBadPlants, setPercentBadPlants] = useState('')
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.container}>
       <BigTitle text='Введите информацию об заболеваемости' />
 
         <Image source={require('../../assets/img/agro8.png')} style={styles.promo} />
         <View style={styles.card}>
-            <StrainInput label='Введите средний % поражения болезнями на поле' placeholder='Впишите числовое значение' />
+            <StrainInput
+              label='Введите средний % поражения болезнями на поле'
+              placeholder='Впишите числовое значение'
+              value={percentIil}
+              typeKeyBoard='numeric'
+              onInputTextChange={setPercentIil}
+            />
         </View>
         <View style={styles.card}>
-            <StrainInput label='Введите средний % поражения сорняками на поле' placeholder='Впишите числовое значение' />
+            <StrainInput
+              label='Введите средний % поражения сорняками на поле'
+              placeholder='Впишите числовое значение'
+              value={percentBadPlants}
+              typeKeyBoard='numeric'
+              onInputTextChange={setPercentBadPlants}
+            />
         </View>
         <View style={styles.buttonWrap}>
-            <AppButton text={'Далее'} onPress={() => navigation.navigate('Last')}/>
+            <AppButton
+              text={'Далее'}
+              onPress={() => {
+                dispatch(choosePercentIil(percentIil))
+                dispatch(choosePercentBadPlants(percentBadPlants))
+                navigation.navigate('Last')
+              }}
+              disabled={!(!!percentIil && !!percentBadPlants)}
+            />
         </View>
     </View>
   )

@@ -19,6 +19,8 @@ import {HealthGroundScreen} from "./src/screens/HealthGroundScreen";
 import {LastInfoScreen} from "./src/screens/LastInfoScreen";
 import {DetailScreen} from "./src/screens/DetailScreen";
 import {SignUp} from "./src/screens/SignUpScreen";
+import {Provider} from "react-redux";
+import {store} from "./src/store";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(true)
@@ -41,6 +43,7 @@ export default function App() {
   const Stack = createStackNavigator();
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Start" component={StartScreen} options={{headerShown: false}}/>
@@ -61,5 +64,6 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }

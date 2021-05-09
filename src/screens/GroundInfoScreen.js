@@ -1,38 +1,107 @@
-import React from "react";
+import React, {useState} from "react";
 import {Image, ScrollView, StatusBar, StyleSheet, Text, TextInput, View} from "react-native";
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
+import {useDispatch} from "react-redux";
+import {
+  chooseNitrogen,
+  choosePercentWater,
+  choosePhosphor, choosePotassium,
+  chooseRootDeep, chooseTemp,
+  chooseTypeGround
+} from "../store/actions/fieldsInfo";
 
 export const GroundInfoScreen = ({navigation}) => {
+  const [typeGround, setTypeGround] = useState('')
+  const [percentWater, setPercentWater] = useState('')
+  const [rootDeep, setRootDeep] = useState('')
+  const [nitrogen, setNitrogen] = useState('')
+  const [phosphor, setPhosphor] = useState('')
+  const [potassium, setPotassium] = useState('')
+  const [temp, setTemp] = useState('')
+  const dispatch = useDispatch()
+
   return (
     <View style={styles.wrapper}>
       <ScrollView style={styles.container}  contentContainerStyle={{ alignItems: 'center' }}>
         <BigTitle text='Введите информацию о почве' />
         <Image source={require('../../assets/img/agro2.png')} style={styles.promo} />
         <View style={styles.card}>
-          <StrainInput placeholder='Тип почвы...' label='Введите тип почвы:' />
+          <StrainInput
+            placeholder='Тип почвы...'
+            label='Введите тип почвы:'
+            onInputTextChange={(text) => setTypeGround(text)}
+            value={typeGround} />
         </View>
         <View style={styles.card}>
-          <StrainInput placeholder='Процент содержания влаги...' label='Введите % содержания влаги в почве:' />
+
+          <StrainInput
+            placeholder='Процент содержания влаги...'
+            label='Введите % содержания влаги в почве:'
+            typeKeyBoard='numeric'
+            onInputTextChange={(text) => setPercentWater(text)}
+            value={percentWater} />
         </View>
         <View style={styles.card}>
-          <StrainInput placeholder='Глубина корневой системы...' label='Максимальная глубина корневой системы культуры (в см):' />
+          <StrainInput
+            placeholder='Глубина корневой системы...'
+            label='Максимальная глубина корневой системы культуры (в см):'
+            typeKeyBoard='numeric'
+            onInputTextChange={(text) => setRootDeep(text)}
+            value={rootDeep} />
         </View>
         <View style={styles.card}>
           <Text style={styles.title}>Содержание азота, фосфора и калия:</Text>
           <View style={styles.inputGroup}>
-            <TextInput style={styles.input} placeholder='Азот' />
-            <TextInput style={styles.input} placeholder='Фосфор' />
-            <TextInput style={styles.input} placeholder='Калий' />
+            <TextInput
+              style={styles.input}
+              placeholder='Азот'
+              keyboardType='numeric'
+              onChangeText={setNitrogen}
+              value={nitrogen}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Фосфор'
+              keyboardType='numeric'
+              onChangeText={setPhosphor}
+              value={phosphor}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Калий'
+              keyboardType='numeric'
+              onChangeText={setPotassium}
+              value={potassium}
+            />
           </View>
         </View>
         <View style={styles.card}>
-          <StrainInput placeholder='Температура' label='Температура почвы (°С)' />
+          <StrainInput
+            placeholder='Температура'
+            label='Температура почвы (°С)'
+            typeKeyBoard='numeric'
+            onInputTextChange={(text) => setTemp(text)}
+            value={temp}
+          />
         </View>
 
         <View style={styles.buttonWrap}>
-          <AppButton text={'Далее'} onPress={() => navigation.navigate('CultureInfo')}/>
+          <AppButton
+            text={'Далее'}
+            onPress={() => {
+              dispatch(chooseTypeGround(typeGround))
+              dispatch(choosePercentWater(percentWater))
+              dispatch(chooseRootDeep(rootDeep))
+              dispatch(chooseNitrogen(nitrogen))
+              dispatch(choosePhosphor(phosphor))
+              dispatch(choosePotassium(potassium))
+              dispatch(chooseTemp(temp))
+              navigation.navigate('CultureInfo')
+            }}
+            disabled={!(!!typeGround && !!percentWater && !!rootDeep && !!nitrogen && !!phosphor && !!potassium && !!temp)}
+          />
         </View>
       </ScrollView>
     </View>

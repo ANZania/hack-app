@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {View, StyleSheet, StatusBar, Text, ScrollView} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import { Ionicons } from '@expo/vector-icons';
+import {useSelector} from "react-redux";
 
 export const DetailScreen = () => {
   const [done, setDone] = useState(false)

@@ -37,7 +37,8 @@ export default function StrainInput({
                                         placeholder,
                                         isLabel = true,
                                         label = "Введите название сорта",
-                                        isNested = false
+                                        isNested = false,
+                                        typeKeyBoard = 'default'
 }) {
     // const [value, onChangeText] = React.useState('');
     return (
@@ -47,6 +48,7 @@ export default function StrainInput({
                 placeholder={placeholder}
                 value={value} 
                 onChangeText={onInputTextChange}
+                keyboardType={typeKeyBoard}
             />
         </View>
 
