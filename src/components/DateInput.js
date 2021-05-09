@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 5,
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
   inputWrap: {
     fontSize: 16,

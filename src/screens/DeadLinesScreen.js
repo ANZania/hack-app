@@ -1,19 +1,20 @@
 import React from "react";
-import {View, StyleSheet, Image} from 'react-native'
+import {View, StyleSheet, Image, ScrollView} from 'react-native'
 import {BigTitle} from "../ui/BigTitle";
 import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
+import MultilineStrainInput from "../components/MultilineStrainInput";
 
 export const DeadLinesScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <BigTitle text='Введите информацию об сроках наступления основных фенологических стадий развития культуры' />
+          <BigTitle text='Введите информацию об сроках наступления основных фенологических стадий развития культуры' />
 
-        <Image source={require('../../assets/img/agro9.png')} style={styles.promo} />
-      <StrainInput isLabel={false} placeholder='Впишите информацию' />
-        <View style={styles.buttonWrap}>
-            <AppButton text={'Далее'} onPress={() => navigation.navigate('Health')}/>
-        </View>
+            <Image source={require('../../assets/img/agro9.png')} style={styles.promo} />
+          <MultilineStrainInput isLabel={false} placeholder='Впишите информацию' maxHeight={240}/>
+            <View style={styles.buttonWrap}>
+                <AppButton text={'Далее'} onPress={() => navigation.navigate('Health')}/>
+            </View>
     </View>
   )
 }

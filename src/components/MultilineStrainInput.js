@@ -19,7 +19,6 @@ const StyledTextInput = styled.TextInput`
   border-radius: 12px;
   font-family: 'Inter-Regular';
   width: 100%;
-  max-height: 1100px;
   margin: 5px 0;
 `
 
@@ -27,6 +26,7 @@ export default function MultilineStrainInput({
                                         onInputTextChange,
                                         value,
                                         placeholder,
+                                        maxHeight = 1200,
                                         isLabel = true,
                                         label = "Введите название сорта",
                                         isNested = false
@@ -41,6 +41,7 @@ export default function MultilineStrainInput({
                 value={value}
                 multiline
                 onChangeText={onInputTextChange}
+                style={{maxHeight: maxHeight}}
             />
         </View>
     )
