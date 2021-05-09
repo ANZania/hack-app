@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import {TextInput, View, StyleSheet} from 'react-native'
 import {DateInput} from "./DateInput";
+import {useSelector} from "react-redux";
+import StrainInput from "./StrainInput";
+import {SmallInput} from "./SmallTextInput";
+import Toast from "react-native-root-toast";
 
-export const AppGroupInputDateWithNumber = ({placeholder, setMainObj}) => {
+export const AppGroupInputDateWithNumber = ({placeholder, setMainObj, appYield=false}) => {
   const [date, setDate] = useState('')
   const [tempFromDate, setTempFromDate] = useState('')
 
@@ -22,10 +26,30 @@ export const AppGroupInputDateWithNumber = ({placeholder, setMainObj}) => {
 
   return (
     <View style={styles.inputGroup}>
-      <DateInput style={{minWidth: '45%', marginRight: 2}} onDateChange={(data) => {
-        setDate(data)
-        dateHandler()
-      }} />
+      {appYield
+        ? <SmallInput
+          typeKeyBoard='numeric'
+          placeholder='Год'
+          maxLength={4}
+          value={date}
+          onInputTextChange={(text) => {
+            if (text > new Date().getFullYear()) {
+              let toast = Toast.show('Укажите корректное значение года', {
+                duration: Toast.durations.SHORT,
+              });
+            } else {
+              setDate(text)
+              dateHandler()
+            }
+
+          }}
+        />
+        : <DateInput style={{minWidth: '45%', marginRight: 2}} onDateChange={(data) => {
+            setDate(data)
+            dateHandler()
+          }} />
+      }
+
       <TextInput keyboardType='numeric' style={styles.input} placeholder={placeholder} value={tempFromDate} onChangeText={(text) => {
         setTempFromDate(text)
         tempHandler()

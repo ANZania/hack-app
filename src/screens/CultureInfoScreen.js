@@ -5,6 +5,7 @@ import StrainInput from "../components/StrainInput";
 import {AppButton} from "../ui/AppButton";
 import {useDispatch, useSelector} from "react-redux";
 import {choosePh} from "../store/actions/fieldsInfo";
+import Toast from "react-native-root-toast";
 
 export const CultureInfoScreen = ({navigation}) => {
   const [ph, setPh] = useState('')
@@ -20,7 +21,15 @@ export const CultureInfoScreen = ({navigation}) => {
               placeholder='Впишите числовое значение'
               typeKeyBoard='numeric'
               value={ph}
-              onInputTextChange={text => setPh(text)}
+              onInputTextChange={text => {
+                if (text > 15 || text < 0) {
+                  let toast = Toast.show('Укажите корректное значение ph', {
+                    duration: Toast.durations.SHORT,
+                  });
+                } else {
+                  setPh(text)
+                }
+              }}
             />
         </View>
         <View style={styles.buttonWrap}>

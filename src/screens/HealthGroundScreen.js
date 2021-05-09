@@ -6,6 +6,7 @@ import {AppButton} from "../ui/AppButton";
 import {DateInput} from "../components/DateInput";
 import {useDispatch, useSelector} from "react-redux";
 import {choosePercentBadPlants, choosePercentIil} from "../store/actions/fieldsInfo";
+import Toast from "react-native-root-toast";
 
 export const HealthGroundScreen = ({navigation}) => {
   const [percentIil, setPercentIil] = useState('')
@@ -23,7 +24,15 @@ export const HealthGroundScreen = ({navigation}) => {
               placeholder='Впишите числовое значение'
               value={percentIil}
               typeKeyBoard='numeric'
-              onInputTextChange={setPercentIil}
+              onInputTextChange={(text) => {
+                if (text > 100 || text < 0) {
+                  let toast = Toast.show('Укажите корректное значение процента', {
+                    duration: Toast.durations.SHORT,
+                  });
+                } else {
+                  setPercentIil(text)
+                }
+              }}
             />
         </View>
         <View style={styles.card}>
@@ -32,7 +41,15 @@ export const HealthGroundScreen = ({navigation}) => {
               placeholder='Впишите числовое значение'
               value={percentBadPlants}
               typeKeyBoard='numeric'
-              onInputTextChange={setPercentBadPlants}
+              onInputTextChange={(text) => {
+                if (text > 100 || text < 0) {
+                  let toast = Toast.show('Укажите корректное значение процента', {
+                    duration: Toast.durations.SHORT,
+                  });
+                } else {
+                  setPercentBadPlants(text)
+                }
+              }}
             />
         </View>
         <View style={styles.buttonWrap}>

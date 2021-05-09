@@ -18,11 +18,11 @@ export const YieldScreen = ({navigation}) => {
         <View style={styles.card}>
           <Text style={styles.label}>Выберите даты и укажите урожайность предыдущих 5 лет на участке (в т/га)</Text>
           <View style={styles.tempWrap}>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
-            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield} appYield={true}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield} appYield={true}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield} appYield={true}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield} appYield={true}/>
+            <AppGroupInputDateWithNumber placeholder={'Урожайность, т/га'} setMainObj={setYield} appYield={true}/>
           </View>
         </View>
 

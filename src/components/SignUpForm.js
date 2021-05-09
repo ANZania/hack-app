@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {ActivityIndicator, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View} from 'react-native'
 import firebase from "./Firebase";
 import {AppButton} from "../ui/AppButton";
+import Toast from 'react-native-root-toast';
 
 export const SignUpForm = ({navigation}) => {
   const [login, onChangeLogin] = React.useState(null);
@@ -24,13 +25,25 @@ export const SignUpForm = ({navigation}) => {
       setLoading(false)
       const errorCode = e.code;
       if (errorCode === 'auth/email-already-in-use') {
-        ToastAndroid.show('Пользователь с таким email уже существует', ToastAndroid.LONG);
+        // ToastAndroid.show('Пользователь с таким email уже существует', ToastAndroid.LONG);
+        let toast = Toast.show('Пользователь с таким email уже существует', {
+          duration: Toast.durations.LONG,
+        });
       } else if (errorCode === 'auth/invalid-email') {
-        ToastAndroid.show('Указан неверный email', ToastAndroid.LONG);
+        // ToastAndroid.show('Указан неверный email', ToastAndroid.LONG);
+        let toast = Toast.show('Указан неверный email', {
+          duration: Toast.durations.LONG,
+        });
       } else if (errorCode === 'auth/weak-password') {
-        ToastAndroid.show('Пароль слишком простой', ToastAndroid.LONG);
+        // ToastAndroid.show('Пароль слишком простой', ToastAndroid.LONG);
+        let toast = Toast.show('Пароль слишком простой. Он должен быть не менее 6 символов', {
+          duration: Toast.durations.LONG,
+        });
       } else if (e.message === 'Пароли не совпадают') {
-        ToastAndroid.show('Пароли не совпадают', ToastAndroid.LONG);
+        // ToastAndroid.show('Пароли не совпадают', ToastAndroid.LONG);
+        let toast = Toast.show('Пароли не совпадают', {
+          duration: Toast.durations.LONG,
+        });
       }
     }
   }
