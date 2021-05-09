@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, ScrollView, Image} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {AppButton} from "../ui/AppButton";
 
 export const LotList = ({navigation}) => {
@@ -9,7 +9,7 @@ export const LotList = ({navigation}) => {
                 Ваши участки
             </Text>
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
-                <View style={styles.card}>
+                <TouchableOpacity activeOpacity={0.7} style={styles.card} onPress={() => navigation.navigate('Detail')}>
                     <Image source={require('../../assets/img/card_img_1.png')} style={styles.cardImg}/>
                     <View style={styles.infoWrap}>
                         <Text style={styles.infoHeading} numberOfLines={3}>
@@ -24,8 +24,8 @@ export const LotList = ({navigation}) => {
                             </Text>
                         </View>
                     </View>
-                </View>
-                <View style={styles.card}>
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.7} style={styles.card} onPress={() => navigation.navigate('Detail')}>
                     <Image source={require('../../assets/img/card_img_2.png')} style={styles.cardImg}/>
                     <View style={styles.infoWrap}>
                         <Text style={styles.infoHeading} numberOfLines={3}>
@@ -40,7 +40,7 @@ export const LotList = ({navigation}) => {
                             </Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.buttonWrap}>
                     <AppButton text={'+'} onPress={() => navigation.navigate('LotChoice')}/>
                 </View>

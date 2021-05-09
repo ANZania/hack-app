@@ -160,7 +160,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.20,
     shadowRadius: 2.25,
     elevation: 5,
-
     flexDirection: 'column',
     justifyContent: 'space-between'
   },

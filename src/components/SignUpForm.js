@@ -8,14 +8,16 @@ export const SignUpForm = ({navigation}) => {
   const [password, onChangePassword] = React.useState(null);
   const [confirmPass, onChangeConfirmPass] = React.useState(null);
   const [loading, setLoading] = useState(false)
+  const [name, onChangeName] = useState(null)
 
-  const RegHandler = async (email, pass, confPass) => {
+  const RegHandler = async (name, email, pass, confPass) => {
     try {
       setLoading(true)
       if (pass !== confPass) {
         throw new Error('Пароли не совпадают')
       }
       await firebase.auth().createUserWithEmailAndPassword(email, pass)
+      await firebase.auth().currentUser.updateProfile({displayName: name})
       setLoading(false)
       navigation.navigate('LotList')
     } catch (e) {
@@ -38,8 +40,14 @@ export const SignUpForm = ({navigation}) => {
       <View style={styles.loginWrap}>
         <View>
           <Text style={styles.heading}>
-            Вход
+            Регистрация
           </Text>
+          <TextInput
+              style={styles.input}
+              onChangeText={onChangeName}
+              placeholder={'Имя'}
+              value={name}
+          />
           <TextInput
             textContentType='emailAddress'
             style={styles.input}
@@ -66,7 +74,7 @@ export const SignUpForm = ({navigation}) => {
         </View>
         <View style={styles.buttonWrap}>
           {
-            loading ? <ActivityIndicator size="large" color="#459F40" /> : <AppButton text={'Войти'} onPress={() => RegHandler(login, password, confirmPass)}/>
+            loading ? <ActivityIndicator size="large" color="#459F40" /> : <AppButton text={'Зарегистрироваться'} onPress={() => RegHandler(name, login, password, confirmPass)}/>
           }
           <Text style={styles.registerText}>
             Есть аккаунт?
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   loginWrap: {
-    height: '84%',
+    height: '93%',
     width: '100%',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
@@ -115,13 +123,13 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderBottomWidth: 1,
-    borderBottomColor: '#000',
+    borderBottomColor: '#459F40',
     marginVertical: '3%',
   },
   buttonWrap: {
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    paddingTop: '25%',
+    paddingTop: '18%',
     alignItems: 'center'
   },
   registerText: {
@@ -132,6 +140,7 @@ const styles = StyleSheet.create({
   registerLink: {
     fontFamily: 'Inter-Medium',
     fontSize: 16,
-    color: '#1177FF'
-  }
+    color: '#459F40'
+  },
+
 })

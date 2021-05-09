@@ -1,18 +1,36 @@
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
-import React from "react";
+import {Text, TouchableOpacity, View, StyleSheet, Keyboard} from "react-native";
+import React, {useEffect, useState} from "react";
 
 export const AppButton = ({text = 'Начать', onPress, disabled}) => {
   const disabledStyle = disabled ? {
     backgroundColor: 'rgba(0, 0, 0, 0.1)'
   } : {}
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
+    Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener("keyboardDidShow", _keyboardDidShow);
+      Keyboard.removeListener("keyboardDidHide", _keyboardDidHide);
+    };
+  }, []);
+
+  const [keyboardStatus, setKeyboardStatus] = useState(undefined);
+  const _keyboardDidShow = () => setKeyboardStatus("Keyboard Shown");
+  const _keyboardDidHide = () => setKeyboardStatus("Keyboard Hidden");
   return (
-    <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={onPress} disabled={false}>
-      <View style={{...styles.buttonStart, ...disabledStyle }}>
-        <Text style={styles.buttonText}>{text}</Text>
-      </View>
-    </TouchableOpacity>
+     <>
+       {keyboardStatus === 'Keyboard Shown' ?
+           <></> :
+           <TouchableOpacity activeOpacity={0.7} style={styles.buttonWrapper} onPress={onPress} disabled={disabled}>
+             <View style={{...styles.buttonStart, ...disabledStyle }}>
+               <Text style={styles.buttonText}>{text}</Text>
+             </View>
+           </TouchableOpacity>       }
+     </>
   )
-}
+};
 
 const styles = StyleSheet.create({
   buttonWrapper: {

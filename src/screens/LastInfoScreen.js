@@ -49,7 +49,6 @@ export const LastInfoScreen = ({navigation}) => {
                     }}
                 />
             </View>
-
             <View style={styles.buttonWrap}>
                 <AppButton
                   text={'Далее'}
@@ -57,7 +56,7 @@ export const LastInfoScreen = ({navigation}) => {
                     dispatch(chooseAvgPlantGrow(avgPlantGrow))
                     dispatch(chooseProjectPok(projectPok))
                     dispatch(chooseUnit(unit))
-                    navigation.navigate('Detail')
+                    navigation.navigate('Comment')
                   }}
                   disabled={!(!!avgPlantGrow && !!projectPok && !!unit)}
                 />
