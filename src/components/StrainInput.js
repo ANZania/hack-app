@@ -39,18 +39,20 @@ export default function StrainInput({
                                         label = "Введите название сорта",
                                         isNested = false,
                                         typeKeyBoard = 'default',
-                                        maxLength=1000
+                                        maxLength=1000,
+                                        animation=false
 }) {
     // const [value, onChangeText] = React.useState('');
     return (
         <View style={isNested ? styles.wrapNested : styles.wrap}>
             {isLabel && <Label style={styles.label}>{label}</Label>}
-            <StyledTextInput
+            <TextInput
                 placeholder={placeholder}
                 value={value} 
                 onChangeText={onInputTextChange}
                 keyboardType={typeKeyBoard}
                 maxLength={maxLength}
+                style={animation ? {...styles.input, ...styles.animation } : styles.input}
             />
         </View>
 
@@ -79,4 +81,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 5,
     },
+  input: {
+    fontSize: 16,
+    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    color: '#919191',
+    padding: 11,
+    borderRadius: 12,
+    fontFamily: 'Inter-Regular',
+    width: '100%',
+    height: 48,
+    marginVertical: 5
+  },
+  animation: {
+      borderWidth: 1,
+    borderColor: '#459F40'
+  }
 })

@@ -67,6 +67,7 @@ export default function CultureSelector({options, placeholder, onSelectOptionCha
                     value={value}
                     onInputTextChange={onSelectOptionChange}
                     isNested={true}
+                    animation={true}
                 />
             )}
 

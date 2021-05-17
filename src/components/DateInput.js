@@ -21,16 +21,15 @@ export const DateInput = ({title, style, onDateChange}) => {
 
     const onChange = (event, selectedDate) => {
       if (selectedDate > new Date()) {
-        let toast = Toast.show('Укажите корректную дату', {
+        Toast.show('Укажите корректную дату', {
           duration: Toast.durations.LONG,
         });
-        setMode('date')
         setShow(false)
       } else {
         const currentDate = selectedDate || date;
         const dateText = normalizeData(currentDate)
         setDateForText(dateText)
-        setShow(Platform.OS === 'ios');
+        setShow(false);
         setDate(currentDate);
         onDateChange(`${dateText[0]}.${dateText[1]}.${dateText[2]}`)
       }
@@ -68,7 +67,6 @@ export const DateInput = ({title, style, onDateChange}) => {
             testID="dateTimePicker"
             value={date}
             mode={mode}
-            is24Hour={true}
             display="default"
             onChange={onChange}
           />
